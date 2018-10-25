@@ -6,8 +6,16 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './auth.guard';
+import { BooksampleconsultationComponent } from './booksampleconsultation/booksampleconsultation.component';
+import { ServicesComponent } from './services/services.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 const routes: Routes = [
+  {
+    path:'',
+    component: HomeComponent,
+    pathMatch: 'full'
+  },
   {
     path:'home',
     component: HomeComponent,
@@ -35,6 +43,21 @@ const routes: Routes = [
     path:'profile',
     component: ProfileComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path:'booksampleconsultation',
+    component: BooksampleconsultationComponent,
+    pathMatch: 'full'
+  },
+  {
+    path:'services',
+    component: ServicesComponent,
+    pathMatch: 'full'
+  },
+  {
+    path:'categories',
+    component: CategoriesComponent,
+    pathMatch: 'full'
   }
 ];
 

@@ -4,7 +4,7 @@
     <div class="rounded-0">
       <div class="card-header">
         <h3 class="mb-0">
-          Register
+          Sign Up
         </h3>
       </div>
       <div class="card-body">
@@ -17,8 +17,18 @@
             <label for="">Password</label>
             <input type="password" name="password" [(ngModel)]= "registerUserData.password" id="" class="form-control rounded-0" required>
           </div>
-          <div class="form-group">
-          <button class="btn btn-primary float-right" (click)="registerUser()">Register</button>
+         
+        <div class="form-group">
+          <input type="radio" name="userType" value='customer' [(ngModel)]= "registerUserData.userType" > I'm a Customer: i need article
+        </div>
+        <div class="form-group">
+          <input type="radio" name="userType" value='writer' [(ngModel)]= "registerUserData.userType"> I'm a Writer: i want to submit article to customers
+          <p> <small>By clicking below to sign up, you are agreeing to the Company Terms of Use and Privacy Policy</small></p>
+         
+        </div>
+        
+        <div class="form-group">
+          <button class="btn btn-primary float-right" (click)="registerUser()">signup</button>
         </div>
         </form>
       </div>

@@ -9,6 +9,15 @@
       <li class="nav-item active" *ngIf = "_authService.loggedIn()">
         <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard<span class="sr-only"></span></a>
       </li>
+      <li class="nav-item active" *ngIf = "!_authService.loggedIn()">
+        <a class="nav-link" routerLink="/booksampleconsultation" routerLinkActive="active">Book Sample Consultation<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item active" >
+        <a class="nav-link" routerLink="/services" routerLinkActive="active">Services<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item active" >
+        <a class="nav-link" routerLink="/categories" routerLinkActive="active">Categories<span class="sr-only"></span></a>
+      </li>
      
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -17,7 +26,16 @@
           <a class="nav-link" routerLink="/login" routerLinkActive="active">Login<span class="sr-only"></span></a>
         </li>
         <li class="nav-item " *ngIf = "!_authService.loggedIn()">
-          <a class="nav-link" routerLink="/register" routerLinkActive="active">Register<span class="sr-only"></span></a>
+          <a class="nav-link" routerLink="/register" routerLinkActive="active">Signup<span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item " *ngIf = "_authService.loggedIn()">
+          <a class="nav-link" routerLink="/profile" routerLinkActive="active">Sample Coated<span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item " *ngIf = "_authService.loggedIn()">
+          <a class="nav-link" routerLink="/profile" routerLinkActive="active">Latest Top<span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item " *ngIf = "_authService.loggedIn()">
+          <a class="nav-link" routerLink="/profile" routerLinkActive="active">Profile<span class="sr-only"></span></a>
         </li>
         <li class="nav-item " *ngIf = "_authService.loggedIn()">
           <a style = "cursor:pointer" class="nav-link" (click)= "_authService.logoutUser()" >LogOut<span class="sr-only"></span></a>
