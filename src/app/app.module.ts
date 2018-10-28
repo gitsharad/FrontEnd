@@ -20,6 +20,7 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { BooksampleconsultationComponent } from './booksampleconsultation/booksampleconsultation.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ServicesComponent } from './services/services.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -34,7 +35,8 @@ import { ServicesComponent } from './services/services.component';
     ProfileComponent,
     BooksampleconsultationComponent,
     CategoriesComponent,
-    ServicesComponent
+    ServicesComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
