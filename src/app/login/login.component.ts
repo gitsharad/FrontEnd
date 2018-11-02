@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from "@angular/router";
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ToastrServiceService } from "../toastr-service.service";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,15 +9,25 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 })
 export class LoginComponent implements OnInit {
 
-  loginUserDetails = {}
-  constructor(private authService: AuthService, private _router: Router, public toastr: ToastsManager, vcr: ViewContainerRef) {
-    this.toastr.setRootViewContainerRef(vcr);
+  loginUserDetails = {
+    email:"",
+    password:""
+  }
+  constructor(private authService: AuthService, private _router: Router, public toastr: ToastrServiceService) {
+   
    }
 
   ngOnInit() {
   }
 
   loginUser(){
+    if(this.loginUserDetails.email.length === 0){
+      this.toastr.Error("Email Should Not Be Empty")
+      return 
+    } else if(this.loginUserDetails.password.length === 0){
+      this.toastr.Error("Password Should Not Be Empty")
+      return
+    }
    this.authService.loginUser(this.loginUserDetails).subscribe(
      res => { 
       localStorage.setItem('token',res.token)
@@ -25,8 +35,7 @@ export class LoginComponent implements OnInit {
       
     },
      err => {
-       console.log('error',err)
-       this.toastr.error(err, 'Oops!');
+       this.toastr.Error(err.error.ErrorCode,err.error.ErrorMsg)
      }
    )
   }

@@ -16,11 +16,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
-import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { BooksampleconsultationComponent } from './booksampleconsultation/booksampleconsultation.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ServicesComponent } from './services/services.component';
 import { FooterComponent } from './footer/footer.component';
+import { ToastrServiceService } from './toastr-service.service';
 
 
 
@@ -42,15 +42,16 @@ import { FooterComponent } from './footer/footer.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule,
-    ToastModule.forRoot()
+    AppRoutingModule
     
   ],
   providers: [AuthService, AuthGuard,{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
-    multi:true
-  }],
+    multi:true,
+  },
+  ToastrServiceService
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
