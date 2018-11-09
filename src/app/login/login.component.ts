@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
       
     },
      err => {
+       console.log('err',err)
        this.toastr.Error(err.error.ErrorCode,err.error.ErrorMsg)
      }
    )

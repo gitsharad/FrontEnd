@@ -4,8 +4,10 @@ import { Router } from "@angular/router";
 
 @Injectable()
 export class AuthService {
-  private _registerUrl = "http://localhost:3000/api/register"
-  private _loginUrl = "http://localhost:3000/api/login"
+  private _host = "http://ec2-18-191-94-112.us-east-2.compute.amazonaws.com:3000/"
+ // private _host = "http://localhost:3000/"
+  private _registerUrl = this._host + "api/register"
+  private _loginUrl = this._host + "api/login"
   constructor(private http: HttpClient,private _router: Router) { }
    
   registerUser(user){

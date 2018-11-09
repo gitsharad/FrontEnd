@@ -1,47 +1,64 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" routerLink="/home">Company Name</a>
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+   
+  
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault1">
+<form class="form-inline my-2 my-lg-0">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active" *ngIf = "!_authService.loggedIn()">
+        <a class="nav-link" routerLink="/booksampleconsultation" routerLinkActive="active">
+          <i class="fas fa-headset"></i>
+          Book A free Consultation<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item active" *ngIf = "!_authService.loggedIn()">
+          
+        <a class="nav-link" routerLink="/login" routerLinkActive="active"><i class="fas fa-lock"></i> Login<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item active" *ngIf = "!_authService.loggedIn()">
+        <a class="nav-link" routerLink="/register" routerLinkActive="active"><i class="fas fa-sign-in-alt"></i> Signup<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item active" *ngIf = "_authService.loggedIn()">
+          <a style = "cursor:pointer" class="nav-link" (click)= "_authService.logoutUser()" ><i class="fas fa-sign-out-alt"></i> LogOut<span class="sr-only"></span></a>
+        </li>
+     
+    </ul> 
+  </form>
+</div>
+</nav>
+<nav class="navbar navbar-expand-md navbar-light bg-light" (onScroll)="handleEvent($event)">
+  <a class="navbar-brand" routerLink="/home">GCW</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active" *ngIf = "_authService.loggedIn()">
-        <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard<span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active" *ngIf = "!_authService.loggedIn()">
-        <a class="nav-link" routerLink="/booksampleconsultation" routerLinkActive="active">Book Sample Consultation<span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active" >
-        <a class="nav-link" routerLink="/services" routerLinkActive="active">Services<span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active" >
-        <a class="nav-link" routerLink="/categories" routerLinkActive="active">Categories<span class="sr-only"></span></a>
-      </li>
+    <ul class="navbar-nav mr-auto sticky-top">
+        
+        <li class="nav-item active" >
+            <a class="nav-link"  routerLinkActive="active"><i class="fas fa-phone-volume"></i> 9850338825<span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item " *ngIf = "_authService.loggedIn()">
+              <a class="nav-link" routerLink="" routerLinkActive="active">PROFILE<span class="sr-only"></span></a>
+            </li>
+        <li class="nav-item " >
+            <a class="nav-link" routerLink="/services" routerLinkActive="active">SERVICES<span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item " >
+            <a class="nav-link" routerLink="/categories" routerLinkActive="active">CATEGORIES<span class="sr-only"></span></a>
+          </li>
+        <li class="nav-item " *ngIf = "_authService.loggedIn()">
+            <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">DASHBOARD<span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item " >
+            <a class="nav-link" routerLink="/samplecoated" routerLinkActive="active">SAMPLE COATED<span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item " >
+            <a class="nav-link" routerLink="/latesttop" routerLinkActive="active">LATEST TOP<span class="sr-only"></span></a>
+          </li>
+          
+          
+
      
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item " *ngIf = "!_authService.loggedIn()">
-          <a class="nav-link" routerLink="/login" routerLinkActive="active">Login<span class="sr-only"></span></a>
-        </li>
-        <li class="nav-item " *ngIf = "!_authService.loggedIn()">
-          <a class="nav-link" routerLink="/register" routerLinkActive="active">Signup<span class="sr-only"></span></a>
-        </li>
-        <li class="nav-item " *ngIf = "_authService.loggedIn()">
-          <a class="nav-link" routerLink="/profile" routerLinkActive="active">Sample Coated<span class="sr-only"></span></a>
-        </li>
-        <li class="nav-item " *ngIf = "_authService.loggedIn()">
-          <a class="nav-link" routerLink="/profile" routerLinkActive="active">Latest Top<span class="sr-only"></span></a>
-        </li>
-        <li class="nav-item " *ngIf = "_authService.loggedIn()">
-          <a class="nav-link" routerLink="/profile" routerLinkActive="active">Profile<span class="sr-only"></span></a>
-        </li>
-        <li class="nav-item " *ngIf = "_authService.loggedIn()">
-          <a style = "cursor:pointer" class="nav-link" (click)= "_authService.logoutUser()" >LogOut<span class="sr-only"></span></a>
-        </li>
-       
-      </ul> 
-    </form>
+   
   </div>
 </nav>
