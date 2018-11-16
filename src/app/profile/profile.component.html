@@ -1,3 +1,73 @@
-<p>
-  profile works!
-</p>
+<div class="container">
+  <div class="row mb-5 mt-1">
+      <div class="col col-lg-6">
+        <h2>Personal Info</h2>
+    <form>
+        <div class="form-row">
+          <div class="col">
+            <label for="fname">First Name</label>
+            <input type="text" value = "{{profileData.firstName}}" class="form-control">
+          </div>
+          <div class="col">
+            <label for="lname">Last Name</label>
+            <input type="text" value = "{{profileData.lastName}}" class="form-control">
+          </div>
+          
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <label for="email">Email</label>
+                <input type="text" readonly value="{{profileData.email}}" class="form-control">
+              </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <label for="phone">Phone</label>
+                <input type="text"  value="{{profileData.phone}}" class="form-control">
+              </div>
+              
+        </div>
+       <div class="form-row">
+          <div class="col">
+            <label for="website">Website</label>
+            <input type="text" value = "{{profileData.website}}" class="form-control">
+          </div>
+          <div class="col">
+            <label for="cname">Company Name</label>
+            <input type="text" value = "{{profileData.companyName}}" class="form-control">
+          </div>
+         
+        </div>
+        <div class="form-row mt-1">
+          <div class="col">
+            <input type="button" class="form-control btn-primary " value="Save" (click)="setProfileData(profileData)">
+          </div>
+        </div>
+        
+      </form>
+      </div>
+
+      <div class="col col-lg-6">
+        <h2>Change password</h2>
+          
+        <div class="form-row">
+            <div class="col">
+                <label for="currentpassword">Current Password</label>
+                <input type="password"  value="" class="form-control">
+              </div>
+              <div class="col">
+                  <label for="newpassword">New Password</label>
+                  <input type="password"  value="" class="form-control">
+                </div>
+        </div>
+        <div class="form-row mt-1">
+          <input type="button" class="form-control btn-primary" value="Change Password">
+        </div>
+       
+        </div>
+      </div>
+      <div class="row">
+        
+       
+      </div>
+</div>

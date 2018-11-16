@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
    this.authService.loginUser(this.loginUserDetails).subscribe(
      res => { 
       localStorage.setItem('token',res.token)
-      this._router.navigate(['/profile'])
+      console.log('dd',res)
+      this._router.navigate(['/dashboard'] , res.userType)
       
     },
      err => {

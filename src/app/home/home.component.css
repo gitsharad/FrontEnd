@@ -9,11 +9,24 @@
 .jumbotron a{
     padding: 9px;
 }
+.ratingLink{
+    font-size: 15px;
+    font-weight: 400;
+    font-family: fantasy;
+    color: yellowgreen;
+    -webkit-line-break: after-white-space;
+}
 @media only screen and (max-width: 768px) {
    .jumbotron .display-4{
     font-size:1rem;
    }
    .jumbotron .display-6{
     font-size:1rem;
+}
+.jumbotron a {
+    padding: 2px;
+}
+.categories{
+    font-size:1.5rem;
 }
 }

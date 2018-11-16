@@ -29,11 +29,15 @@ body{
 .main{
     position:relative;
 }
+.row{
+    margin-left:0;
+    margin-right:0;
+}
 .jumbotron{
     position: absolute;
     z-index: 22;
-    width: 100%;
     background-color: transparent;
+    width:100%;
 }
 .jumbotron .display-4{
     color:white;
