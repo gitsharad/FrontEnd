@@ -13,13 +13,15 @@ import { EmailValidator } from '@angular/forms';
 export class ProfileComponent implements OnInit {
   profileData = {
     email: "",
-    newpassword: "",
-    password:"",
     website:"",
     companyname:"",
     fname:"",
     lname:"",
     phone:""
+  }
+  changePassData = {
+    newpassword: "",
+    password:"" 
   }
   constructor(private authService: AuthService, private _router: Router, public toastr: ToastrServiceService) { }
 
@@ -40,7 +42,11 @@ export class ProfileComponent implements OnInit {
 }
 
 setProfileData(profileData){
-  this.authService.setProfileData(profileData).subscribe(
+  var updateData = profileData
+  delete updateData.password
+  delete updateData.userType
+
+  this.authService.setProfileData(updateData).subscribe(
     res => { 
       this.toastr.Success("profile Updated Successfully !","Success")
    },
