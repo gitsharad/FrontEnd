@@ -53,15 +53,15 @@
         <div class="form-row">
             <div class="col">
                 <label for="currentpassword">Current Password</label>
-                <input type="password" [(ngModel)]= "profileData.currentPassword" name = "currentPassword" value="" class="form-control">
+                <input type="password" [(ngModel)]= "changePassData.currentPassword" name = "currentPassword" value="" class="form-control">
               </div>
               <div class="col">
                   <label for="newpassword">New Password</label>
-                  <input type="password" [(ngModel)]= "profileData.newPassword" name = "newPassword" value="" class="form-control">
+                  <input type="password" [(ngModel)]= "changePassData.newPassword" name = "newPassword" value="" class="form-control">
                 </div>
         </div>
         <div class="form-row mt-1">
-          <input type="button" class="form-control btn-primary" value="Change Password">
+          <input type="button" (click)= changePassword(changePassData) class="form-control btn-primary" value="Change Password">
         </div>
        
         </div>

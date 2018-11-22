@@ -20,8 +20,8 @@ export class ProfileComponent implements OnInit {
     phone:""
   }
   changePassData = {
-    newpassword: "",
-    password:"" 
+    newPassword: "",
+    currentPassword:""
   }
   constructor(private authService: AuthService, private _router: Router, public toastr: ToastrServiceService) { }
 
@@ -49,6 +49,20 @@ setProfileData(profileData){
   this.authService.setProfileData(updateData).subscribe(
     res => { 
       this.toastr.Success("profile Updated Successfully !","Success")
+   },
+    err => {
+      console.log('err',err)
+      this.toastr.Error(err.error.ErrorCode,err.error.ErrorMsg)
+    }
+  )
+}
+
+changePassword(changePassData){
+  changePassData.email = this.profileData.email
+
+ this.authService.changePassword(changePassData).subscribe(
+    res => { 
+      this.toastr.Success("password changed Successfully !","Success")
    },
     err => {
       console.log('err',err)

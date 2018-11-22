@@ -4,11 +4,12 @@ import { Router } from "@angular/router";
 
 @Injectable()
 export class AuthService {
-   private _host = "http://ec2-18-191-94-112.us-east-2.compute.amazonaws.com:3000/"
+    private _host = "http://ec2-18-191-94-112.us-east-2.compute.amazonaws.com:3000/"
   //private _host = "http://localhost:3000/"
   private _registerUrl = this._host + "api/register"
   private _loginUrl = this._host + "api/login"
   private _profileUrl = this._host + "api/profile"
+  private _changePassUrl = this._host + "api/changepassword"
   constructor(private http: HttpClient,private _router: Router) { }
    
   registerUser(user){
@@ -42,6 +43,10 @@ export class AuthService {
 
   getToken(){
     return localStorage.getItem('token')
+  }
+
+  changePassword(changePassData){
+    return this.http.post<any>(this._changePassUrl, changePassData)
   }
 }
  
