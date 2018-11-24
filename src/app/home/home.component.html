@@ -16,15 +16,13 @@
                   <div class="collapse" id="categoryCollapse">
                       <div class="card card-body">
                         <li  *ngFor="let prod of productData">
-                            <input name="prod[]" [(ngModel)]="prod[$index]" value="{{prod.productName}}" type="checkbox" >
+                            <input name="{{prod.productName}}" (ngModel)="prod.productName" type="checkbox" (change)="onChangeCategory($event.target.checked, prod.productName)">
                             <label for="">{{prod.productName}}</label>
                         </li>
-                       
-                       
                       </div>
                     </div>
                       
-                   <a class="btn btn-success " href="#" role="button" (click)="letStart()">Lets Get Started »</a>
+                   <a class="btn btn-success "  role="button" (click)="letStart(productData)">Lets Get Started »</a>
                 </div>  
               </form>
                <h1 class="display-6"> Guranteed 100% money back.</h1>

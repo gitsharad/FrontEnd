@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from "../myservices/product.service";
 import { ToastrServiceService } from "../toastr-service.service";
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,14 +9,13 @@ import { ToastrServiceService } from "../toastr-service.service";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private productService: ProductService, public toastr: ToastrServiceService) { }
+  constructor(private productService: ProductService, public toastr: ToastrServiceService, private _router: Router) { }
   public productData
+  addtoCartProduct: Array <any> = []
   ngOnInit() {
     this.getProducts()
   }
-  public prod
-
-  getProducts(){
+    getProducts(){
     this.productService.getProducts('regular').subscribe(
       res => { 
         this.productData = res      
@@ -25,10 +25,18 @@ export class HomeComponent implements OnInit {
       }
     )
   }
+  onChangeCategory(event,prod){
+        if(event){
+          this.addtoCartProduct.push(prod)
+        } else {
+          let index = this.addtoCartProduct.indexOf(prod);
+          this.addtoCartProduct.splice(index,1);
+        }
+  }
 
-   letStart(prod){
-     console.log('prod',prod)
-    sessionStorage.setItem( "prod", prod );
+  letStart(prod){
+    sessionStorage.setItem( "addtoCartProducts", this.addtoCartProduct.toString())
+    this._router.navigate(['/cart'])
   } 
 
 

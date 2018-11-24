@@ -9,6 +9,7 @@ import { AuthGuard } from './auth.guard';
 import { BooksampleconsultationComponent } from './booksampleconsultation/booksampleconsultation.component';
 import { ServicesComponent } from './services/services.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   {
@@ -57,6 +58,11 @@ const routes: Routes = [
   {
     path:'categories',
     component: CategoriesComponent,
+    pathMatch: 'full'
+  },
+  {
+    path:'cart',
+    component: CartComponent,
     pathMatch: 'full'
   }
 ];

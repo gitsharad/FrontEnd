@@ -23,6 +23,8 @@ import { FooterComponent } from './footer/footer.component';
 import { ToastrServiceService } from './toastr-service.service';
 import { ProductService } from "./myservices/product.service";
 import { CheckoutComponent } from './checkout/checkout.component';
+import { CartComponent } from './cart/cart.component';
+import { CartitemComponent } from './cartitem/cartitem.component';
 
 
 
@@ -39,7 +41,9 @@ import { CheckoutComponent } from './checkout/checkout.component';
     CategoriesComponent,
     ServicesComponent,
     FooterComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    CartComponent,
+    CartitemComponent
   ],
   imports: [
     BrowserModule,
