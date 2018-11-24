@@ -1,10 +1,24 @@
 .categories{
-    font-size: 2rem;
+    font-size: 1.8rem;
     background: #8c8f90;
     border: none;
     color: white;
     font-weight: 500;
     vertical-align: middle;
+    margin-bottom:-1px;
+    padding: 0px 3px;
+}
+.categories i{
+    color: yellow;
+    font-size: 21px;
+}
+#categoryCollapse{
+    position: absolute;
+    right: 50%;
+    text-align: left;
+}
+#categoryCollapse li {
+    list-style: none;
 }
 .jumbotron a{
     padding: 9px;

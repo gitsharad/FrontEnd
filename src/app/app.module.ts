@@ -21,6 +21,8 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ServicesComponent } from './services/services.component';
 import { FooterComponent } from './footer/footer.component';
 import { ToastrServiceService } from './toastr-service.service';
+import { ProductService } from "./myservices/product.service";
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 
@@ -36,7 +38,8 @@ import { ToastrServiceService } from './toastr-service.service';
     BooksampleconsultationComponent,
     CategoriesComponent,
     ServicesComponent,
-    FooterComponent
+    FooterComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ import { ToastrServiceService } from './toastr-service.service';
     useClass: TokenInterceptorService,
     multi:true,
   },
-  ToastrServiceService
+  ToastrServiceService,
+  ProductService
 ],
   bootstrap: [AppComponent]
 })
