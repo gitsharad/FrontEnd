@@ -25,6 +25,7 @@ import { ProductService } from "./myservices/product.service";
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CartComponent } from './cart/cart.component';
 import { CartitemComponent } from './cartitem/cartitem.component';
+import { CartitemloaderService } from './cartitemloader.service';
 
 
 
@@ -44,6 +45,7 @@ import { CartitemComponent } from './cartitem/cartitem.component';
     CheckoutComponent,
     CartComponent,
     CartitemComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -58,8 +60,10 @@ import { CartitemComponent } from './cartitem/cartitem.component';
     multi:true,
   },
   ToastrServiceService,
-  ProductService
+  ProductService,
+  CartitemloaderService
 ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CartitemComponent]
 })
 export class AppModule { }

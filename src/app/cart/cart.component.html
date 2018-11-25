@@ -1,0 +1,27 @@
+<h2>My Cart</h2>
+<div>
+   <!-- <app-cartitem [itemList]="cartProduct" *ngFor="let cartproduct of cartProducts"></app-cartitem> -->
+   <table class="table table-hover container" >
+      <thead>
+        <tr>
+          <th></th>
+          <th>Product Name</th>
+          <th>Qty</th>
+          <th>Words</th>
+          <th>Topic / Keywords / tile</th>
+          <th>pay</th>
+          <th>addon</th>
+          <th>addon qty</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody #dynamic>
+    <tr  [itemList]="cartproduct" *ngFor="let cartproduct of cartProducts" class="app-cartitem"></tr>
+    </tbody>
+    </table>
+    <div class="container actionButtons mb-3">
+      <button name="additem"  (click)="additem()">Add More Item</button>
+      <button name="checkout"  (click)="checkout()" class="float-right">CheckOut</button>
+    </div>
+    
+</div>

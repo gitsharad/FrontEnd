@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { 
+  Inject,
+  ViewContainerRef
+} from '@angular/core'
 
+import { CartitemloaderService } from "../cartitemloader.service"
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -7,11 +12,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
-public cartProduct 
+public cartProducts 
+ 
+ 
+  @ViewChild('dynamic', { read: ViewContainerRef }) viewContainerRef: ViewContainerRef
+
+  constructor(public cartitemservice: CartitemloaderService) {
+    
+  }
+  
   ngOnInit() {
-    this.cartProduct =  sessionStorage.getItem('addtoCartProducts').split(',')
-    console.log('this',this.cartProduct)
+    this.cartProducts =  sessionStorage.getItem('addtoCartProducts').split(',') 
+  }
+
+  additem(){
+    this.cartProducts.push('Article')
   }
 
 }
