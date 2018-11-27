@@ -1,12 +1,14 @@
 
-        <td class="removeItem"><i class="fas fa-minus-circle"></i></td>
-        <td>{{itemList}}</td>
-        <td><input type="number" name="qty" class="qtyStyle"></td>
-        <td><input type="number" name="words" class="qtyStyle"></td>
-        <td><select name="title"><option>Title</option><option>Keyword</option></select></td>
-        <td>100</td>
+        <td class="removeItem"><i class="fas fa-minus-circle" (click)="removeItem(selectedProduct)"></i></td>
+        <td>
+          <select (change)="onChange(product._id)">
+              <option selected="product._id === selectedProduct" *ngFor="let product of productData" value="{{product._id}}">{{product.productName}}</option>
+          </select>
+        </td>
+        <td><input type="number" name="qty" [(ngModel)]="currentProductData.qty" class="qtyStyle"></td>
+        <td><input type="number" name="words" class="qtyStyle" [(ngModel)]="currentProductData.words"></td>
+        <td><select name="title" [(ngModel)]="title"><option>Title</option><option>Keyword</option><option>Topic</option></select></td>
+        <td>{{currentProductData.qty*currentProductData.rate}}</td>
         <td><select name="addon"><option>Image</option></select></td>
-        <td><input type="number" name="addonqty" class="qtyStyle"></td>
-        <td>300</td>
-        
-   
+        <td><input type="number" name="addonqty" [(ngModel)]="currentProductData.addonqty" class="qtyStyle"></td>
+        <td>{{(currentProductData.qty*currentProductData.rate) + (currentProductData.addonqty*100)}}</td>
