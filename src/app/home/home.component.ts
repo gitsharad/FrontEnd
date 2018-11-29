@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from "../myservices/product.service";
 import { ToastrServiceService } from "../toastr-service.service";
 import { Router } from '@angular/router';
+import * as _ from 'lodash';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -25,17 +26,27 @@ export class HomeComponent implements OnInit {
       }
     )
   }
-  onChangeCategory(event,prod){
+  onChangeCategory(event,prod_id,prod_name,$index){
+    let prodAddElement = {id: prod_id,
+    prodName: prod_name,
+    qty:1,
+    addon:'IMAGE',
+    addonqty:1,
+    total:0,
+    pay:1
+   }
         if(event){
-          this.addtoCartProduct.push(prod)
+          this.addtoCartProduct.push(prodAddElement)
         } else {
-          let index = this.addtoCartProduct.indexOf(prod);
-          this.addtoCartProduct.splice(index,1);
-        }
+          let index = _.findIndex(this.addtoCartProduct, function(o) { return o.prodName.toUpperCase() === prod_name.toUpperCase() });
+          if(index !== -1){
+            this.addtoCartProduct.splice(index,1)
+          }
+          }
   }
 
   letStart(prod){
-    sessionStorage.setItem( "addtoCartProducts", this.addtoCartProduct.toString())
+    sessionStorage.setItem( "CartProducts", JSON.stringify(this.addtoCartProduct))
     this._router.navigate(['/cart'])
   } 
 

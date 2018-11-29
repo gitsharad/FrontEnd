@@ -24,7 +24,7 @@ public productData
   }
   public default_item
   ngOnInit() {
-    this.cartProducts =  sessionStorage.getItem('addtoCartProducts').split(',') 
+    this.cartProducts =  JSON.parse(sessionStorage.getItem('CartProducts'))
     this.getProducts()
   }
 

@@ -10,17 +10,13 @@ export class CartitemComponent implements OnInit {
  @Input() selectedProduct 
  @Input() productData
  public removeProduct
- public currentProductData = {
-   qty:1,
-   addonqty:1,
-   rate:100,
-   words:500
- }
+ public currentProductData
  @Output() itemToRemove: EventEmitter<string>= new EventEmitter()
   constructor() { }
 
   ngOnInit(){
     console.log('item',this.selectedProduct)
+    this.currentProductData = this.selectedProduct
   }
 
   removeItem(item){

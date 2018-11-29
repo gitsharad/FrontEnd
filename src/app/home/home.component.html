@@ -15,8 +15,9 @@
                   <label class= "categories" for="" data-toggle="collapse" data-target="#categoryCollapse">Categories <i class="fas fa-chevron-down"></i></label>
                   <div class="collapse" id="categoryCollapse">
                       <div class="card card-body">
-                        <li  *ngFor="let prod of productData">
-                            <input name="{{prod.productName}}" (ngModel)="prod.productName" type="checkbox" (change)="onChangeCategory($event.target.checked, prod._id)">
+                        <li  *ngFor="let prod of productData; let i = index">
+                            <input name="{{prod.productName}}" (ngModel)="prod.productName" type="checkbox" (change)="onChangeCategory($event.target.checked, prod._id,prod.productName,i)">
+                            
                             <label for="">{{prod.productName}}</label>
                         </li>
                       </div>
