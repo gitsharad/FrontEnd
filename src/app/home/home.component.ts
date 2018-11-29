@@ -26,19 +26,22 @@ export class HomeComponent implements OnInit {
       }
     )
   }
-  onChangeCategory(event,prod_id,prod_name,$index){
-    let prodAddElement = {id: prod_id,
-    prodName: prod_name,
+  onChangeCategory(event,prod){
+    let prodAddElement = {id: prod.id,
+    prodName: prod.productName,
     qty:1,
     addon:'IMAGE',
     addonqty:1,
     total:0,
-    pay:1
+    pay:1,
+    words:500,
+    title:"Title",
+    rate: prod.rate
    }
         if(event){
           this.addtoCartProduct.push(prodAddElement)
         } else {
-          let index = _.findIndex(this.addtoCartProduct, function(o) { return o.prodName.toUpperCase() === prod_name.toUpperCase() });
+          let index = _.findIndex(this.addtoCartProduct, function(o) { return o.prodName.toUpperCase() === prod.productName.toUpperCase() });
           if(index !== -1){
             this.addtoCartProduct.splice(index,1)
           }

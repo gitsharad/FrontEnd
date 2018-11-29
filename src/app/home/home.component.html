@@ -16,7 +16,7 @@
                   <div class="collapse" id="categoryCollapse">
                       <div class="card card-body">
                         <li  *ngFor="let prod of productData; let i = index">
-                            <input name="{{prod.productName}}" (ngModel)="prod.productName" type="checkbox" (change)="onChangeCategory($event.target.checked, prod._id,prod.productName,i)">
+                            <input name="{{prod.productName}}" (ngModel)="prod.productName" type="checkbox" (change)="onChangeCategory($event.target.checked, prod)">
                             
                             <label for="">{{prod.productName}}</label>
                         </li>
