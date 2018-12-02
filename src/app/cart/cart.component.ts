@@ -22,7 +22,16 @@ public productData
   constructor(public cartitemservice: CartitemloaderService,public productService: ProductService, public toastr: ToastrServiceService) {
     
   }
-  public default_item
+  public default_item = {_id: 0,
+    productName: "",
+    qty:1,
+    addon:'0',
+    pay:1,
+    words:500,
+    title:"",
+    rate: 0,
+    imageRate:100
+   }
   ngOnInit() {
     this.cartProducts =  JSON.parse(sessionStorage.getItem('CartProducts'))
     this.getProducts()
@@ -40,8 +49,9 @@ public productData
     this.productService.getProducts('regular').subscribe(
       res => { 
         this.productData = res     
-        this.default_item = res[0]._id 
-        console.log('data',res)
+        this.default_item._id = res[0]._id 
+        this.default_item.rate = res[0].rate
+        this.default_item.productName = res[0].productName
      },
       err => {
         this.toastr.Error(err.error.ErrorCode,err.error.ErrorMsg)

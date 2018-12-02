@@ -27,16 +27,15 @@ export class HomeComponent implements OnInit {
     )
   }
   onChangeCategory(event,prod){
-    let prodAddElement = {id: prod.id,
+    let prodAddElement = {_id: prod._id,
     prodName: prod.productName,
     qty:1,
-    addon:'IMAGE',
-    addonqty:1,
-    total:0,
+    addon:'0',
     pay:1,
     words:500,
-    title:"Title",
-    rate: prod.rate
+    title:"",
+    rate: prod.rate,
+    imageRate:100
    }
         if(event){
           this.addtoCartProduct.push(prodAddElement)
