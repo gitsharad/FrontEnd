@@ -44,6 +44,9 @@ public productData
     let index = this.cartProducts.indexOf(selectedItem);
     this.cartProducts.splice(index,1)
   }
+  checkOutItems(){
+   sessionStorage.setItem( "CartProducts", JSON.stringify(this.cartProducts))
+  }
 
    getProducts(){
     this.productService.getProducts('regular').subscribe(

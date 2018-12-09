@@ -3,7 +3,6 @@
         <td>
        <select (change)="onChange($event.target.value)" name= "_id[]" [(ngModel)]="currentProductData._id">
               <option  *ngFor="let product of productData" value="{{product._id}}">{{product.productName}}</option>
-         
         </select>
         </td>
         <td><input type="number" name="qty[]" [(ngModel)]="currentProductData.qty" class="qtyStyle"></td>
