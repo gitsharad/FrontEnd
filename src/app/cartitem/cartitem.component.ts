@@ -14,10 +14,12 @@ export class CartitemComponent implements OnInit {
  @Output() itemToRemove: EventEmitter<string>= new EventEmitter()
   constructor() { }
   public numbers
+  public wordList
   ngOnInit(){
     console.log('item',this.selectedProduct)
     this.currentProductData = this.selectedProduct
-    this.numbers = Array(20).fill(0).map((x,i)=>i);
+    this.numbers = Array(20).fill(0).map((x,i)=>i)
+    this.wordList = Array(6).fill(0).map((x,i) => i*500)
   }
 
   removeItem(item){
