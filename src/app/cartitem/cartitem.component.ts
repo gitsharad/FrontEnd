@@ -29,7 +29,7 @@ export class CartitemComponent implements OnInit {
   onChange(productId){
     let data =  _.find(this.productData,{_id: productId})
     this.currentProductData = {_id: data._id,
-    productName: data.productName,
+    prodName: data.productName,
     qty:1,
     addon:'0',
     pay:1,
@@ -37,7 +37,8 @@ export class CartitemComponent implements OnInit {
     title:"",
     rate: data.rate,
     imageRate:100
-   }
+
+    }
   }
  
 }

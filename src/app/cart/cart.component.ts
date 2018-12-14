@@ -1,12 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { 
-  Inject,
-  ViewContainerRef
-} from '@angular/core'
-
-import { CartitemloaderService } from "../cartitemloader.service"
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../myservices/product.service';
 import { ToastrServiceService } from '../toastr-service.service';
+import * as _ from 'lodash';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -17,13 +12,10 @@ export class CartComponent implements OnInit {
 public cartProducts 
 public productData 
  
-  @ViewChild('dynamic', { read: ViewContainerRef }) viewContainerRef: ViewContainerRef
-
-  constructor(public cartitemservice: CartitemloaderService,public productService: ProductService, public toastr: ToastrServiceService) {
-    
-  }
-  public default_item = {_id: 0,
-    productName: "",
+  constructor(public productService: ProductService, public toastr: ToastrServiceService) {}
+  public default_item = {
+    _id: 0,
+    prodName: "",
     qty:1,
     addon:'0',
     pay:1,
@@ -38,7 +30,19 @@ public productData
   }
 
   additem(){
-    this.cartProducts.push(this.default_item)
+    let data =  _.find(this.productData,{_id: this.productData[0]._id})
+    this.default_item = {
+    _id: data._id,
+    prodName: data.productName,
+    qty:1,
+    addon:'0',
+    pay:1,
+    words:500,
+    title:"",
+    rate: data.rate,
+    imageRate:100
+   }
+    this.cartProducts.push(this.default_item) 
   }
   removeItem(selectedItem){
     let index = this.cartProducts.indexOf(selectedItem);
@@ -51,10 +55,7 @@ public productData
    getProducts(){
     this.productService.getProducts('regular').subscribe(
       res => { 
-        this.productData = res     
-        this.default_item._id = res[0]._id 
-        this.default_item.rate = res[0].rate
-        this.default_item.productName = res[0].productName
+        this.productData = res
      },
       err => {
         this.toastr.Error(err.error.ErrorCode,err.error.ErrorMsg)

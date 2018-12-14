@@ -1,14 +1,18 @@
 
         <td class="removeItem"><i class="fas fa-minus-circle" (click)="removeItem(selectedProduct)"></i></td>
         <td>
-       <select (change)="onChange($event.target.value)" name= "_id[]" [(ngModel)]="currentProductData._id">
+        <select (change)="onChange($event.target.value)" name= "_id" [(ngModel)]="currentProductData._id">
               <option  *ngFor="let product of productData" value="{{product._id}}">{{product.productName}}</option>
         </select>
         </td>
-        <td><input type="number" name="qty[]" [(ngModel)]="currentProductData.qty" class="qtyStyle"></td>
-        <td><select name = "words[]" class="qtyStyle" [(ngModel)]="currentProductData.words"><option value="{{word}}" *ngFor = "let word of wordList">{{word}}</option></select></td>
+        <td><input type="number" name="qty" [(ngModel)]="currentProductData.qty" class="qtyStyle"></td>
+        <td><select name = "words" class="qtyStyle" [(ngModel)]="currentProductData.words"><option value="{{word}}" *ngFor = "let word of wordList">{{word}}</option></select></td>
         <!--<td><input type="number" name="words[]" class="qtyStyle" [(ngModel)]="currentProductData.words"></td> -->
-        <td><input type="text" name="title[]" [(ngModel)]="selectedProduct.title"></td>
-        <td><select name = "addon[]" [(ngModel)]="currentProductData.addon"><option value="{{number}}" *ngFor = "let number of numbers">{{number}}</option></select></td>
+        <td><input type="text" name="title" [(ngModel)]="selectedProduct.title" required></td>
+        <td>
+              <select name = "addon" [(ngModel)]="currentProductData.addon">
+                  <option value="{{number}}" *ngFor = "let number of numbers">{{number}}</option>
+              </select>
+        </td>
         <td>{{(currentProductData.qty*currentProductData.rate) + (currentProductData.addon*currentProductData.imageRate)}}</td>
         
