@@ -13,6 +13,30 @@ export class HomeComponent implements OnInit {
   constructor(private productService: ProductService, public toastr: ToastrServiceService, private _router: Router) { }
   public productData
   addtoCartProduct: Array <any> = []
+  public items = [
+    [
+      {
+        'price':'100'
+      },
+      {
+        'price':'200'
+      },
+      {
+        'price':'300'
+      }
+    ],
+    [
+      {
+        'price':'100'
+      },
+      {
+        'price':'200'
+      },
+      {
+        'price':'300'
+      }
+    ]
+  ]
   ngOnInit() {
     this.getProducts()
   }
@@ -26,7 +50,7 @@ export class HomeComponent implements OnInit {
       }
     )
   }
-  onChangeCategory(event,prod){
+  onChangeCategory(event,prod,ordernow){
     let prodAddElement = {_id: prod._id,
     prodName: prod.productName,
     qty:1,
@@ -39,6 +63,9 @@ export class HomeComponent implements OnInit {
    }
         if(event){
           this.addtoCartProduct.push(prodAddElement)
+          if(ordernow){
+            this.letStart(this.addtoCartProduct)
+          }
         } else {
           let index = _.findIndex(this.addtoCartProduct, function(o) { return o.prodName.toUpperCase() === prod.productName.toUpperCase() });
           if(index !== -1){
@@ -46,6 +73,7 @@ export class HomeComponent implements OnInit {
           }
           }
   }
+
 
   letStart(prod){
     sessionStorage.setItem( "CartProducts", JSON.stringify(this.addtoCartProduct))
