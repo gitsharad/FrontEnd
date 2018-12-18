@@ -13,30 +13,6 @@ export class HomeComponent implements OnInit {
   constructor(private productService: ProductService, public toastr: ToastrServiceService, private _router: Router) { }
   public productData
   addtoCartProduct: Array <any> = []
-  public items = [
-    [
-      {
-        'price':'100'
-      },
-      {
-        'price':'200'
-      },
-      {
-        'price':'300'
-      }
-    ],
-    [
-      {
-        'price':'100'
-      },
-      {
-        'price':'200'
-      },
-      {
-        'price':'300'
-      }
-    ]
-  ]
   ngOnInit() {
     this.getProducts()
   }
@@ -57,9 +33,15 @@ export class HomeComponent implements OnInit {
     addon:'0',
     pay:1,
     words:500,
-    title:"",
+    otherInfo:[
+      {"name":"",
+       "addon":"",
+       "addonqty":0,
+       "addonrate":100
+      }
+    ],
     rate: prod.rate,
-    imageRate:100
+    addontotal:0
    }
         if(event){
           this.addtoCartProduct.push(prodAddElement)

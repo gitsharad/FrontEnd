@@ -8,14 +8,14 @@
           <th>Product Name</th>
           <th>Qty</th>
           <th>Words</th>
-          <th>Topic / Keywords / tile</th>
-          <th>Images</th>
+          <th>OtherInfo
+          </th>
           <th>Total</th>
         </tr>
       </thead>
       <tbody #dynamic>
-    <tr  [selectedProduct]="cartproduct" [productData]="productData" (itemToRemove)="removeItem($event)" *ngFor="let cartproduct of cartProducts" class="app-cartitem"></tr>
-    </tbody>
+          <tr  [selectedProduct]="cartproduct" [productData]="productData" [addonList]="addonList" (itemToRemove)="removeItem($event)" *ngFor="let cartproduct of cartProducts" class="app-cartitem"></tr>
+      </tbody>
     </table>
     <div class="container actionButtons mb-3">
       <button name="additem"  (click)="additem()">Add More Item</button>

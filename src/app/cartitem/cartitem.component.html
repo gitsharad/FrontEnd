@@ -5,14 +5,35 @@
               <option  *ngFor="let product of productData" value="{{product._id}}">{{product.productName}}</option>
         </select>
         </td>
-        <td><input type="number" name="qty" [(ngModel)]="currentProductData.qty" class="qtyStyle"></td>
+        <td><input type="number" name="qty" [(ngModel)]="currentProductData.qty" class="qtyStyle" (focusout)=addtitlelist($event.target.value)></td>
         <td><select name = "words" class="qtyStyle" [(ngModel)]="currentProductData.words"><option value="{{word}}" *ngFor = "let word of wordList">{{word}}</option></select></td>
         <!--<td><input type="number" name="words[]" class="qtyStyle" [(ngModel)]="currentProductData.words"></td> -->
-        <td><input type="text" name="title" [(ngModel)]="selectedProduct.title" required></td>
         <td>
-              <select name = "addon" [(ngModel)]="currentProductData.addon">
-                  <option value="{{number}}" *ngFor = "let number of numbers">{{number}}</option>
+                 <table class="table" style="width:50%">
+                         <tr>
+                               <th>title </th>
+                               <th>addon </th>
+                               <th>qty</th>
+                         </tr>            
+                  
+             <tr *ngFor="let info of currentProductData.otherInfo; let i = index" >
+                    <td>
+              <input type="text"  name="otherInfo" [(ngModel)]="currentProductData.otherInfo[i].name"   required>
+              </td>
+              <td>
+              <select name = "addon" [(ngModel)]="currentProductData.otherInfo[i].addon">
+                  <option value="{{addon.productName}}" *ngFor = "let addon of addonList">{{addon.productName}}</option>
               </select>
+              </td>
+              <td>
+              <input type="number" name="addonqty" [(ngModel)]="currentProductData.otherInfo[i].addonqty" (focusout)="changeAddonQty()" class="qtyStyle" >
+             <!-- {{currentProductData.otherInfo[i].addonqty * currentProductData.otherInfo[i].addonrate}} -->
+              </td>
+            </tr>
+            </table>
+      </td>
+       
+        <td>
+              {{(currentProductData.qty*currentProductData.rate) }}
         </td>
-        <td>{{(currentProductData.qty*currentProductData.rate) + (currentProductData.addon*currentProductData.imageRate)}}</td>
         

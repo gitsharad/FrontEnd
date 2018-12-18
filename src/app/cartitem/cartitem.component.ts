@@ -9,12 +9,14 @@ import * as _ from 'lodash';
 export class CartitemComponent implements OnInit {
  @Input() selectedProduct 
  @Input() productData
+ @Input() addonList
  public removeProduct
  public currentProductData
  @Output() itemToRemove: EventEmitter<string>= new EventEmitter()
   constructor() { }
   public numbers
   public wordList
+  
   ngOnInit(){
     this.currentProductData = this.selectedProduct
     this.numbers = Array(20).fill(0).map((x,i)=>i)
@@ -28,17 +30,33 @@ export class CartitemComponent implements OnInit {
 
   onChange(productId){
     let data =  _.find(this.productData,{_id: productId})
-    this.currentProductData = {_id: data._id,
+    this.currentProductData = {
+    _id: data._id,
     prodName: data.productName,
     qty:1,
     addon:'0',
     pay:1,
     words:500,
-    title:"",
+    otherInfo:[
+      {"name":"",
+       "addon":"",
+       "addonqty":0,
+       "addonrate":100
+      }
+    ],
     rate: data.rate,
-    imageRate:100
-
+    addontotal:0
     }
   }
- 
+ // changeAddonQty
+
+  addtitlelist(event){
+    for(let i = 0; i< event ; i++){
+     this.currentProductData.otherInfo[i] =  {"name":"",
+     "addon":"",
+     "addonqty":0,
+     "addonrate":100
+    }
+    }  
+  }
 }

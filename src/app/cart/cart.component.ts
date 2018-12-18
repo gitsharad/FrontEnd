@@ -11,22 +11,34 @@ export class CartComponent implements OnInit {
 
 public cartProducts 
 public productData 
+public default_item
+public addonList
  
-  constructor(public productService: ProductService, public toastr: ToastrServiceService) {}
-  public default_item = {
-    _id: 0,
-    prodName: "",
-    qty:1,
-    addon:'0',
-    pay:1,
-    words:500,
-    title:"",
-    rate: 0,
-    imageRate:100
-   }
+  constructor(public productService: ProductService, public toastr: ToastrServiceService) {
+    let temp= {
+      _id: 0,
+      prodName: "",
+      qty:1,
+      addon:'0',
+      pay:1,
+      words:500,
+      otherInfo:[
+        {"name":"",
+         "addon":"",
+         "addonqty":0,
+         "addonrate":100
+        }
+      ],
+      rate: 0,
+      addontotal:0
+     }
+     this.default_item = temp
+  }
+   
   ngOnInit() {
     this.cartProducts =  JSON.parse(sessionStorage.getItem('CartProducts'))
-    this.getProducts()
+    this.getProducts('regular')
+    this.getProducts('addon')
   }
 
   additem(){
@@ -38,9 +50,15 @@ public productData
     addon:'0',
     pay:1,
     words:500,
-    title:"",
+    otherInfo:[
+      {"name":"",
+       "addon":"",
+       "addonqty":0,
+       "addonrate":100
+      }
+    ],
     rate: data.rate,
-    imageRate:100
+    addontotal:0
    }
     this.cartProducts.push(this.default_item) 
   }
@@ -52,10 +70,16 @@ public productData
    sessionStorage.setItem( "CartProducts", JSON.stringify(this.cartProducts))
   }
 
-   getProducts(){
-    this.productService.getProducts('regular').subscribe(
+   getProducts(type){
+    this.productService.getProducts(type).subscribe(
       res => { 
-        this.productData = res
+        if(type === 'regular'){
+          this.productData = res
+        } else {
+          this.addonList = res 
+         // console.log('addlist',this.addonList)
+        }
+        
      },
       err => {
         this.toastr.Error(err.error.ErrorCode,err.error.ErrorMsg)
