@@ -3,3 +3,11 @@
     padding: 4px;
     font-size: 20px; */
 }
+li{
+    list-style-type: none;
+}
+
+button{
+    color: white;
+    background-color: rgb(45, 151, 200);
+}

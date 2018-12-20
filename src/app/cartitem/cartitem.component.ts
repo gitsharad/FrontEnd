@@ -51,12 +51,18 @@ export class CartitemComponent implements OnInit {
  // changeAddonQty
 
   addtitlelist(event){
-    for(let i = 0; i< event ; i++){
-     this.currentProductData.otherInfo[i] =  {"name":"",
-     "addon":"",
-     "addonqty":0,
-     "addonrate":100
+    if(this.currentProductData.otherInfo.length > event){
+      let totalLength = this.currentProductData.otherInfo.length
+      for(let k = event ; k<totalLength ; k++ ){
+        this.currentProductData.otherInfo.splice(k,1)
+      }
     }
+    for(let i = this.currentProductData.otherInfo.length; i< event ; i++){
+      this.currentProductData.otherInfo[i] =  {"name":"",
+            "addon":"",
+            "addonqty":0,
+            "addonrate":100
+            }
     }  
   }
 }

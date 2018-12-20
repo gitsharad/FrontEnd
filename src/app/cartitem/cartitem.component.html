@@ -18,7 +18,7 @@
                   
              <tr *ngFor="let info of currentProductData.otherInfo; let i = index" >
                     <td>
-              <input type="text"  name="otherInfo" [(ngModel)]="currentProductData.otherInfo[i].name"   required>
+              <input type="text"  name="name" [(ngModel)]="currentProductData.otherInfo[i].name"   required>
               </td>
               <td>
               <select name = "addon" [(ngModel)]="currentProductData.otherInfo[i].addon">
