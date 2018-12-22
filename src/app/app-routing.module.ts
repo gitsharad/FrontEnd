@@ -10,6 +10,7 @@ import { BooksampleconsultationComponent } from './booksampleconsultation/booksa
 import { ServicesComponent } from './services/services.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
   {
@@ -63,6 +64,11 @@ const routes: Routes = [
   {
     path:'cart',
     component: CartComponent,
+    pathMatch: 'full'
+  },
+  {
+    path:'checkout',
+    component: CheckoutComponent,
     pathMatch: 'full'
   }
 ];

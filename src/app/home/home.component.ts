@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   }
   onChangeCategory(event,prod,ordernow){
     let prodAddElement = {_id: prod._id,
-    prodName: prod.productName,
+    productName: prod.productName,
     qty:1,
     addon:'0',
     pay:1,
@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
           if(index !== -1){
             this.addtoCartProduct.splice(index,1)
           }
-          }
+        }
   }
 
 

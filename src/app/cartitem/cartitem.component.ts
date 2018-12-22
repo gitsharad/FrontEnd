@@ -30,26 +30,9 @@ export class CartitemComponent implements OnInit {
 
   onChange(productId){
     let data =  _.find(this.productData,{_id: productId})
-    this.currentProductData = {
-    _id: data._id,
-    prodName: data.productName,
-    qty:1,
-    addon:'0',
-    pay:1,
-    words:500,
-    otherInfo:[
-      {"name":"",
-       "addon":"",
-       "addonqty":0,
-       "addonrate":100
-      }
-    ],
-    rate: data.rate,
-    addontotal:0
-    }
+    this.currentProductData.productName = data.productName  
   }
- // changeAddonQty
-
+ 
   addtitlelist(event){
     if(this.currentProductData.otherInfo.length > event){
       let totalLength = this.currentProductData.otherInfo.length

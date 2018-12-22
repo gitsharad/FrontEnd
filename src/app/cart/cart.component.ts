@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AnimationStyles } from '@angular/core';
 import { ProductService } from '../myservices/product.service';
 import { ToastrServiceService } from '../toastr-service.service';
 import * as _ from 'lodash';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -9,15 +10,15 @@ import * as _ from 'lodash';
 })
 export class CartComponent implements OnInit {
 
-public cartProducts 
+public cartProducts : Array <any> = []
 public productData 
 public default_item
 public addonList
  
-  constructor(public productService: ProductService, public toastr: ToastrServiceService) {
+  constructor(public productService: ProductService, public toastr: ToastrServiceService , private _router: Router) {
     let temp= {
       _id: 0,
-      prodName: "",
+      productName: "",
       qty:1,
       addon:'0',
       pay:1,
@@ -36,7 +37,9 @@ public addonList
   }
    
   ngOnInit() {
-    this.cartProducts =  JSON.parse(sessionStorage.getItem('CartProducts'))
+    if(JSON.parse(sessionStorage.getItem('CartProducts'))){
+      this.cartProducts =  JSON.parse(sessionStorage.getItem('CartProducts'))
+    }
     this.getProducts('regular')
     this.getProducts('addon')
   }
@@ -45,7 +48,7 @@ public addonList
     let data =  _.find(this.productData,{_id: this.productData[0]._id})
     this.default_item = {
     _id: data._id,
-    prodName: data.productName,
+    productName: data.productName,
     qty:1,
     addon:'0',
     pay:1,
@@ -61,13 +64,15 @@ public addonList
     addontotal:0
    }
     this.cartProducts.push(this.default_item) 
+    sessionStorage.setItem( "CartProducts", JSON.stringify(this.cartProducts))
   }
   removeItem(selectedItem){
     let index = this.cartProducts.indexOf(selectedItem);
     this.cartProducts.splice(index,1)
   }
-  checkOutItems(){
+  checkOutItems(checkoutType){
    sessionStorage.setItem( "CartProducts", JSON.stringify(this.cartProducts))
+   this._router.navigate(['/checkout'])
   }
 
    getProducts(type){
@@ -77,7 +82,6 @@ public addonList
           this.productData = res
         } else {
           this.addonList = res 
-         // console.log('addlist',this.addonList)
         }
         
      },
@@ -86,5 +90,4 @@ public addonList
       }
     )
   } 
-
 }
