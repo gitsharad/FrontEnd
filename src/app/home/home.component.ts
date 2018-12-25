@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private productService: ProductService, public toastr: ToastrServiceService, private _router: Router) { }
   public productData
+  public status
   addtoCartProduct: Array <any> = []
   ngOnInit() {
     this.getProducts()
@@ -55,7 +56,10 @@ export class HomeComponent implements OnInit {
           }
         }
   }
-
+ 
+  muteStream(){
+    this.status = true
+  }
 
   letStart(prod){
     sessionStorage.setItem( "CartProducts", JSON.stringify(this.addtoCartProduct))

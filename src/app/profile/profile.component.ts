@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from "@angular/router";
 import { ToastrServiceService } from "../toastr-service.service";
-import { EmailValidator } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -29,7 +28,7 @@ export class ProfileComponent implements OnInit {
     this.getProfileData()
   }
   getProfileData(){
-    this.authService.getProfile('ssspawar25@gmail.com').subscribe(
+    this.authService.getProfile(localStorage.getItem('email')).subscribe(
       res => { 
         this.profileData = res
         

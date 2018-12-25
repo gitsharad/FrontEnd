@@ -26,6 +26,9 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { CartComponent } from './cart/cart.component';
 import { CartitemComponent } from './cartitem/cartitem.component';
 import { CartitemloaderService } from './cartitemloader.service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { IndustrycarouselComponent } from './industrycarousel/industrycarousel.component';
+
 
 
 
@@ -44,14 +47,16 @@ import { CartitemloaderService } from './cartitemloader.service';
     FooterComponent,
     CheckoutComponent,
     CartComponent,
-    CartitemComponent
+    CartitemComponent,
+    IndustrycarouselComponent
     
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
     
   ],
   providers: [AuthService, AuthGuard,{
