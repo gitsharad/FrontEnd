@@ -34,6 +34,7 @@ export class RegisterComponent implements OnInit {
    this._authservice.registerUser(this.registerUserData)
     .subscribe(res =>{ 
       localStorage.setItem('token',res.token)
+      localStorage.setItem('email' ,this.registerUserData.email)
       this._router.navigate(['/profile'])
     },
    err => {this.toastr.Error(err.error.ErrorCode,err.error.ErrorMsg)}

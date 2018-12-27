@@ -71,7 +71,13 @@ public addonList
     this.cartProducts.splice(index,1)
   }
   checkOutItems(checkoutType){
+    if(checkoutType==="hireawriter")
+    {
+      this.toastr.Warning('Coming Soon !',"This Feature Will ")
+      return
+    }
    sessionStorage.setItem( "CartProducts", JSON.stringify(this.cartProducts))
+   sessionStorage.setItem( "checkoutType", checkoutType)
    this._router.navigate(['/checkout'])
   }
 

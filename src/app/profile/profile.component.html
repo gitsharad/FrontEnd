@@ -38,6 +38,44 @@
           </div>
          
         </div>
+        <div *ngIf="profileData.userType === 'writer'">
+        <h2>Other Information</h2>
+        <div class="form-row">
+            <div class="col">
+                <label for="phone">Categories</label>
+               <ul class="multicategory" style="list-style:none;padding:0">
+                 <li><input type="text"  name = "category"  class="form-control"></li>
+                 <li  *ngFor="let category of profileData.categories" ></li>
+               </ul>
+              </div>
+              
+        </div>
+        <div class="form-row">
+            
+            <div class="col">
+                <label for="highest Degree">Highest Degree</label>
+               <select class="form-control" name="highestdegree" id="highestdegree"><option value="Msc">Msc</option></select>
+              </div>
+              <div class="col">
+                  <label for="yearsofexp">Years Of Experience</label>
+                  <select class="form-control" name="yearofexp" id="yearofexp"> <option value="" selected="">---------</option> <option value="<01">less than 1 year</option> <option value="<03">1-3 years</option> <option value="<05">3-5 years</option> <option value="<10">5-10 years</option> <option value="<99">10 or more years</option>
+                  </select>
+              
+                  </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <label for="phone">Languages</label>
+               <ul class="multilanguage" style="list-style:none;padding:0">
+                 <li *ngFor="let language of profileData.languages"></li>
+                 <li><input type="text"  name = "language"  class="form-control"></li>
+
+               </ul>
+              </div>
+            </div>
+              
+        </div>
+        
         <div class="form-row mt-1">
           <div class="col">
             <input type="button" class="form-control btn-primary " value="Save" (click)="setProfileData(profileData)">
@@ -63,6 +101,8 @@
         <div class="form-row mt-1">
           <input type="button" (click)= changePassword(changePassData) class="form-control btn-primary" value="Change Password">
         </div>
+
+       
        
         </div>
       </div>

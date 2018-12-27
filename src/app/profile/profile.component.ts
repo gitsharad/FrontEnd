@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
     this.authService.getProfile(localStorage.getItem('email')).subscribe(
       res => { 
         this.profileData = res
-        
+        console.log('profileData',this.profileData)
      },
       err => {
         console.log('err',err)
