@@ -70,6 +70,7 @@ public addonList
     let index = this.cartProducts.indexOf(selectedItem);
     this.cartProducts.splice(index,1)
   }
+ 
   checkOutItems(checkoutType){
     if(checkoutType==="hireawriter")
     {

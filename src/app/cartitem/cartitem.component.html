@@ -21,19 +21,18 @@
               <input type="text"  name="name" [(ngModel)]="currentProductData.otherInfo[i].name"   required>
               </td>
               <td>
-              <select name = "addon" [(ngModel)]="currentProductData.otherInfo[i].addon">
+              <select name = "addon" [(ngModel)]="currentProductData.otherInfo[i].addon" (change)= "addonchange(i)">
                   <option value="{{addon.productName}}" *ngFor = "let addon of addonList">{{addon.productName}}</option>
               </select>
               </td>
               <td>
-              <input type="number" name="addonqty" [(ngModel)]="currentProductData.otherInfo[i].addonqty" (focusout)="changeAddonQty()" class="qtyStyle" >
-             <!-- {{currentProductData.otherInfo[i].addonqty * currentProductData.otherInfo[i].addonrate}} -->
-              </td>
+              <input type="number" name="addonqty" [(ngModel)]="currentProductData.otherInfo[i].addonqty" (change)="addonqtychange()" class="qtyStyle" >
+             </td>
             </tr>
             </table>
       </td>
        
         <td>
-              {{(currentProductData.qty*currentProductData.rate)}}
+              {{(currentProductData.qty*currentProductData.rate)+ currentProductData.addontotal}}
         </td>
         

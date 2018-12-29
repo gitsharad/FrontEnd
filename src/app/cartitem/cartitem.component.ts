@@ -32,6 +32,16 @@ export class CartitemComponent implements OnInit {
     let data =  _.find(this.productData,{_id: productId})
     this.currentProductData.productName = data.productName  
   }
+  addonchange(index){
+    this.currentProductData.otherInfo[index].addonqty = 0
+  }
+  addonqtychange (){
+    let total = 0
+    for(let i = 0 ; i < this.currentProductData.otherInfo.length; i++){
+      total = total + (this.currentProductData.otherInfo[i].addonqty * this.currentProductData.otherInfo[i].addonrate)
+    }
+    this.currentProductData.addontotal =  total
+  }
  
   addtitlelist(event){
     if(this.currentProductData.otherInfo.length > event){
