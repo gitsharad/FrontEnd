@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
      res => { 
       localStorage.setItem('token',res.token)
       localStorage.setItem('email' , this.loginUserDetails.email)
+      localStorage.setItem('userType',res.userType)
       this._router.navigate(['/dashboard'] , res.userType)
       
     },

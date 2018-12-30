@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from "@angular/router";
 import { ToastrServiceService } from "../toastr-service.service";
+import { CategoriesComponent } from '../categories/categories.component';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +17,11 @@ export class ProfileComponent implements OnInit {
     companyname:"",
     fname:"",
     lname:"",
-    phone:""
+    phone:"",
+    languages:[],
+    yearofexp:"",
+    highestdegree:"",
+    categories: []
   }
   changePassData = {
     newPassword: "",
@@ -27,11 +32,34 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.getProfileData()
   }
+  addcategory(category){
+    if(category)
+    {
+      this.profileData.categories.push({"name":category})
+    }
+  }
+
+  addLanguage(language){
+    if(language)
+    {
+      this.profileData.languages.push({"name":language})
+    }
+  }
+
+  removelanguage(index){
+    this.profileData.languages.splice(index,1)
+  }
+
+  removecategory(index){
+    this.profileData.categories.splice(index,1)
+  }
   getProfileData(){
     this.authService.getProfile(localStorage.getItem('email')).subscribe(
       res => { 
-        this.profileData = res
-        console.log('profileData',this.profileData)
+       this.profileData = res
+       if(this.profileData.categories.length === 0){
+         this.profileData.categories = []
+       }
      },
       err => {
         console.log('err',err)
@@ -42,15 +70,20 @@ export class ProfileComponent implements OnInit {
 
 setProfileData(profileData){
   var updateData = profileData
+  let temp = updateData.userType
   delete updateData.password
   delete updateData.userType
+  
+  console.log('profiledata',this.profileData)
 
   this.authService.setProfileData(updateData).subscribe(
     res => { 
-      this.toastr.Success("profile Updated Successfully !","Success")
+      this.toastr.Success("profile Updated Successfully!","Success")
+      updateData.userType = temp
    },
     err => {
       console.log('err',err)
+      updateData.userType = temp
       this.toastr.Error(err.error.ErrorCode,err.error.ErrorMsg)
     }
   )

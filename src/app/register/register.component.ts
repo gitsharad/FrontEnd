@@ -35,6 +35,7 @@ export class RegisterComponent implements OnInit {
     .subscribe(res =>{ 
       localStorage.setItem('token',res.token)
       localStorage.setItem('email' ,this.registerUserData.email)
+      localStorage.setItem('userType',res.userType)
       this._router.navigate(['/profile'])
     },
    err => {this.toastr.Error(err.error.ErrorCode,err.error.ErrorMsg)}
