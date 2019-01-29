@@ -1,5 +1,16 @@
-<h2>My Cart</h2>
+
 <div>
+  <div class="row mt-2">
+    <div class="col-4"><h2>Project Details</h2></div>
+    <div class="col-3"><h6 style="text-align:center">Project Name </h6><input type="text" class="form-control"></div>
+    <div class="col-3"><h6 style="text-align:center">Project Delivery </h6><select name="delivery" class="form-control">
+      <option>7 Days</option>
+      <option>5 Days</option>
+      <option>4 Days</option>
+      <option>3 Days</option>
+      <option>2 Days</option>
+    </select></div>
+  </div>
    <!-- <app-cartitem [itemList]="cartProduct" *ngFor="let cartproduct of cartProducts"></app-cartitem> -->
    <table class="table table-hover container" >
       <thead>
@@ -7,21 +18,23 @@
           <th></th>
           <th>Product Name</th>
           <th>Qty</th>
-          <th>Words</th>
           <th>OtherInfo
           </th>
-          <th>Total</th>
+          <th>Price</th>
+          <th>  </th>
         </tr>
       </thead>
-      <tbody #dynamic>
-          <tr  [selectedProduct]="cartproduct" [productData]="productData" [addonList]="addonList" (itemToRemove)="removeItem($event)" *ngFor="let cartproduct of cartProducts" class="app-cartitem"></tr>
+      <tbody>
+          <tr  [selectedProduct]="cartproduct" [productData]="productData" [addonList]="addonList" (itemToRemove)="removeItem($event)" [itemindex]="i" *ngFor="let cartproduct of cartProducts; let i = index" class="app-cartitem"></tr>
       </tbody>
     </table>
     <div class="container actionButtons mb-3">
       <button name="additem"  (click)="additem()">Add More Item</button>
-      <div style="text-align:center">
-          <button name="checkout"  (click)="checkOutItems($event.target.value)" style="width:200px;height:50px;" class="btn" value="launchcontest">Launch A Contest</button>
-         <div class="panel-group">
+      <div class="row">
+      <div class="col-6">
+      <div style="text-align:right">
+          <button name="checkout"  (click)="checkOutItems($event.target.value)" style="width:200px;height:50px;" class="btn btn-primary" value="launchcontest">Launch A Contest</button>
+      <!-- <div class="panel-group">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
@@ -39,62 +52,42 @@
             <div class="panel-footer"></div>
           </div>
         </div>
+      </div> -->
+        </div>
       </div>
+        <div class="col-6"> <!-- Hire GCW Team -->
+          <div style="line-height:50px;">
+            <button name="checkout"  (click)="checkOutItems($event.target.value)"  value="hiregcwteam"  class="btn btn-primary">Hire Dedicated Team</button>
+        <!--   <div class="panel-group">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" href="#gcwTeamFeature">Features</a>
+              </h4>
+            </div>
+            <div id="gcwTeamFeature" class="panel-collapse collapse">
+              <div class="panel-body">
+                <ul>
+                <li>feature1</li>
+                <li>feature2</li>
+                <li>feature3</li>
+                <li>feature4</li>
+                <li>feature5</li>
+              </ul></div>
+              <div class="panel-footer"></div>
+            </div>
+          </div>
+        </div> -->
+          </div></div>
         </div>
     </div>
   <div class="container-fluid" style="background-color:#f1f1f1">
     <div class="container">
      <!-- Launch Contest Section -->
  
-
     <div class="row">
-     <div class="col-6"> <!-- Hire A Writer -->
-      <div style="text-align:center">
-        <button name="checkout"  (click)="checkOutItems($event.target.value)" style="width:200px;height:50px" value = "hireawriter" class="btn">Hire A Writer</button>
-       <div class="panel-group">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" href="#hireAWriter">Features</a>
-          </h4>
-        </div>
-        <div id="hireAWriter" class="panel-collapse collapse">
-          <div class="panel-body"><ul>
-            <li>feature1</li>
-            <li>feature2</li>
-            <li>feature3</li>
-            <li>feature4</li>
-            <li>feature5</li>
-          </ul></div>
-          <div class="panel-footer"></div>
-        </div>
-      </div>
-    </div>
-      </div></div>
-      <div class="col-6"> <!-- Hire GCW Team -->
-        <div style="text-align:center">
-          <button name="checkout"  (click)="checkOutItems($event.target.value)" value="hiregcwteam" style="width:200px;height:50px" class="btn">Hire GCW Team</button>
-         <div class="panel-group">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              <a data-toggle="collapse" href="#gcwTeamFeature">Features</a>
-            </h4>
-          </div>
-          <div id="gcwTeamFeature" class="panel-collapse collapse">
-            <div class="panel-body">
-              <ul>
-              <li>feature1</li>
-              <li>feature2</li>
-              <li>feature3</li>
-              <li>feature4</li>
-              <li>feature5</li>
-            </ul></div>
-            <div class="panel-footer"></div>
-          </div>
-        </div>
-      </div>
-        </div></div>
+
+
     </div>
 
  

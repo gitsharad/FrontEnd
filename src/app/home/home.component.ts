@@ -41,6 +41,20 @@ export class HomeComponent implements OnInit {
        "addonrate":100
       }
     ],
+    styleGuide:{
+      "audiences":[],
+      "industries":[{
+        "name":""
+      }],
+      "keywords":[{
+        "name":""
+      }],
+      "tones":[{
+        "name":""
+      }],
+      "voice":"",
+      "sampleBlogUrl":""
+    },
     rate: prod.rate,
     addontotal:0
    }

@@ -28,6 +28,7 @@ import { CartitemComponent } from './cartitem/cartitem.component';
 import { CartitemloaderService } from './cartitemloader.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { IndustrycarouselComponent } from './industrycarousel/industrycarousel.component';
+import { NgbdModalBasic } from "./modal-basic";
 
 
 
@@ -48,7 +49,8 @@ import { IndustrycarouselComponent } from './industrycarousel/industrycarousel.c
     CheckoutComponent,
     CartComponent,
     CartitemComponent,
-    IndustrycarouselComponent
+    IndustrycarouselComponent,
+    NgbdModalBasic
     
   ],
   imports: [
@@ -56,7 +58,7 @@ import { IndustrycarouselComponent } from './industrycarousel/industrycarousel.c
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule.forRoot()
     
   ],
   providers: [AuthService, AuthGuard,{

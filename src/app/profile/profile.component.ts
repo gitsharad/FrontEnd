@@ -74,8 +74,6 @@ setProfileData(profileData){
   delete updateData.password
   delete updateData.userType
   
-  console.log('profiledata',this.profileData)
-
   this.authService.setProfileData(updateData).subscribe(
     res => { 
       this.toastr.Success("profile Updated Successfully!","Success")

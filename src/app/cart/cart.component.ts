@@ -1,4 +1,4 @@
-import { Component, OnInit, AnimationStyles } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../myservices/product.service';
 import { ToastrServiceService } from '../toastr-service.service';
 import * as _ from 'lodash';
@@ -30,6 +30,14 @@ public addonList
          "addonrate":100
         }
       ],
+      styleGuide:{
+        "audiences":[],
+        "industries":[],
+        "keywords":[],
+        "tones":[],
+        "voice":"",
+        "sampleBlogUrl":""
+      },
       rate: 0,
       addontotal:0
      }
@@ -60,6 +68,14 @@ public addonList
        "addonrate":100
       }
     ],
+    styleGuide:{
+      "audiences":[],
+      "industries":[],
+      "keywords":[],
+      "tones":[],
+      "voice":"",
+      "sampleBlogUrl":""
+    },
     rate: data.rate,
     addontotal:0
    }

@@ -5,34 +5,49 @@
               <option  *ngFor="let product of productData" value="{{product._id}}">{{product.productName}}</option>
         </select>
         </td>
-        <td><input type="number" name="qty" [(ngModel)]="currentProductData.qty" class="qtyStyle" (focusout)=addtitlelist($event.target.value)></td>
-        <td><select name = "words" class="qtyStyle" [(ngModel)]="currentProductData.words"><option value="{{word}}" *ngFor = "let word of wordList">{{word}}</option></select></td>
+        <td><input type="number" name="qty" min="1" [(ngModel)]="currentProductData.qty" class="qtyStyle" (focusout)=addtitlelist($event.target.value)></td>
+       <!-- <td><select name = "words" class="qtyStyle" [(ngModel)]="currentProductData.words"><option value="{{word}}" *ngFor = "let word of wordList">{{word}}</option></select></td> -->
         <!--<td><input type="number" name="words[]" class="qtyStyle" [(ngModel)]="currentProductData.words"></td> -->
         <td>
-                 <table class="table" style="width:50%">
+              <div style="max-height:200px;overflow:auto">
+                 <table class="table" style="width:50%; max-height:100px;overflow:auto;">
                          <tr>
                                <th>title</th>
-                               <th>addon</th>
-                               <th>qty</th>
+                               <th>wordscount</th>
                          </tr>            
                   
-             <tr *ngFor="let info of currentProductData.otherInfo; let i = index" >
+             <tr *ngFor="let info of currentProductData.otherInfo; let i = index">
                     <td>
-              <input type="text"  name="name" [(ngModel)]="currentProductData.otherInfo[i].name"   required>
-              </td>
-              <td>
+                    <input type="text"  name="name" [(ngModel)]="currentProductData.otherInfo[i].name"   required>
+                    </td>
+            <!--  <td>
               <select name = "addon" [(ngModel)]="currentProductData.otherInfo[i].addon" (change)= "addonchange(i)">
                   <option value="{{addon.productName}}" *ngFor = "let addon of addonList">{{addon.productName}}</option>
               </select>
-              </td>
+              </td> -->
               <td>
-              <input type="number" name="addonqty" [(ngModel)]="currentProductData.otherInfo[i].addonqty" (change)="addonqtychange()" class="qtyStyle" >
-             </td>
+                    <select name = "words" class="" [(ngModel)]="currentProductData.otherInfo[i].words" (change)="wordscountchange()">
+                        <option value="{{word}}" *ngFor = "let word of wordList">{{word}}</option>
+                    </select>
+              </td>
+              <!--<td>
+              <input type="number" name="wordscount" [(ngModel)]="currentProductData.otherInfo[i].wordscount" (change)="wordscountchange()" class="qtyStyle" >
+             </td> -->
+            
             </tr>
             </table>
+      </div>
       </td>
        
         <td>
               {{(currentProductData.qty*currentProductData.rate)+ currentProductData.addontotal}}
         </td>
+        <td>
+               
+              <ngbd-modal-basic [cartProduct]=cartProducts[itemindex]></ngbd-modal-basic>
+            
+            </td>
+
+
+
         

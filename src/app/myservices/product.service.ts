@@ -4,8 +4,8 @@ import { Router } from "@angular/router";
 
 @Injectable()
 export class ProductService {
-  private _host = "http://ec2-18-191-94-112.us-east-2.compute.amazonaws.com:3000/"
-  //private _host = "http://localhost:3000/"
+ private _host = "http://ec2-52-15-233-183.us-east-2.compute.amazonaws.com:3000/"
+ // private _host = "http://localhost:3000/"
   private _productUrl = this._host + "api/products"
 
   constructor(private http: HttpClient,private _router: Router) { }

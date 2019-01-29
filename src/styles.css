@@ -175,3 +175,32 @@ h2{
   .slick-arrow.slick-hidden {
       display: none;
   }
+
+
+  /*common css */
+  .multicategory li, .multilanguage li{
+    display: inline-block;
+    background-color: lightblue;
+    color: black;
+    margin-left: 6px;
+    padding: 5px;
+    border-radius: 6px;
+}
+.multicategory , .multilanguage {
+    list-style: none;
+    padding: 0;
+    background: white;
+    border: 1px solid #dde1e6;
+    border-radius: 5px;
+}
+.multicategory input, .multilanguage input {
+    border:none;
+    width:100%;
+   
+}
+.multicategory  .inputli, .multilanguage .inputli{
+    background-color: white;
+    color: black;
+    padding: 0px;
+    border-radius: 0px;
+}
