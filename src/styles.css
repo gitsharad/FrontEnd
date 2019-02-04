@@ -180,11 +180,12 @@ h2{
   /*common css */
   .multicategory li, .multilanguage li{
     display: inline-block;
-    background-color: lightblue;
+    background-color: white;
     color: black;
+    box-shadow: 0 0 10px #d7d7db;
     margin-left: 6px;
     padding: 5px;
-    border-radius: 6px;
+    border-radius: 2px;
 }
 .multicategory , .multilanguage {
     list-style: none;

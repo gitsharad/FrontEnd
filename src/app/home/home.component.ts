@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   constructor(private productService: ProductService, public toastr: ToastrServiceService, private _router: Router) { }
   public productData
   public status
+  public projectDetails = {}
   addtoCartProduct: Array <any> = []
   ngOnInit() {
     this.getProducts()
@@ -32,31 +33,24 @@ export class HomeComponent implements OnInit {
     productName: prod.productName,
     qty:1,
     addon:'0',
-    pay:1,
-    words:500,
+    total:prod.rate*1,
     otherInfo:[
       {"name":"",
-       "addon":"",
-       "addonqty":0,
-       "addonrate":100
+      "words":500
       }
     ],
     styleGuide:{
       "audiences":[],
-      "industries":[{
-        "name":""
-      }],
-      "keywords":[{
-        "name":""
-      }],
-      "tones":[{
-        "name":""
-      }],
+      "industries":[],
+      "keywords":"",
+      "tones":[],
       "voice":"",
-      "sampleBlogUrl":""
+      "thingsToAvoid":"",
+      "thingsToMention":"",
+      "additionalNotes":"",
+      "styleBtnTxt":"Style"
     },
-    rate: prod.rate,
-    addontotal:0
+    rate: prod.rate
    }
         if(event){
           this.addtoCartProduct.push(prodAddElement)
@@ -77,6 +71,10 @@ export class HomeComponent implements OnInit {
 
   letStart(prod){
     sessionStorage.setItem( "CartProducts", JSON.stringify(this.addtoCartProduct))
+    sessionStorage.setItem('projectDetails',JSON.stringify({
+      "projectName":"",
+      "projectDelivery":"7"
+    }))
     this._router.navigate(['/cart'])
   } 
 

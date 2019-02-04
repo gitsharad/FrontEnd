@@ -14,6 +14,8 @@ public cartProducts : Array <any> = []
 public productData 
 public default_item
 public addonList
+public projectDetails = {}
+public subtotal 
  
   constructor(public productService: ProductService, public toastr: ToastrServiceService , private _router: Router) {
     let temp= {
@@ -21,25 +23,25 @@ public addonList
       productName: "",
       qty:1,
       addon:'0',
-      pay:1,
+      total:0,
       words:500,
       otherInfo:[
         {"name":"",
-         "addon":"",
-         "addonqty":0,
-         "addonrate":100
+        "words":500
         }
       ],
       styleGuide:{
         "audiences":[],
         "industries":[],
-        "keywords":[],
+        "keywords":"",
         "tones":[],
         "voice":"",
-        "sampleBlogUrl":""
+        "thingsToAvoid":"",
+        "thingsToMention":"",
+        "additionalNotes":"",
+        "styleBtnTxt":"Style"
       },
-      rate: 0,
-      addontotal:0
+      rate: 0
      }
      this.default_item = temp
   }
@@ -48,9 +50,18 @@ public addonList
     if(JSON.parse(sessionStorage.getItem('CartProducts'))){
       this.cartProducts =  JSON.parse(sessionStorage.getItem('CartProducts'))
     }
+    this.projectDetails = JSON.parse(sessionStorage.getItem('projectDetails'))
     this.getProducts('regular')
     this.getProducts('addon')
+    this.subtotalCalculator(this.cartProducts)
   }
+
+  subtotalCalculator(data){
+      if(!data){
+      data =  this.cartProducts
+      }
+      this.subtotal =_.sumBy(data, function(o) { return o.total; });
+   }
 
   additem(){
     let data =  _.find(this.productData,{_id: this.productData[0]._id})
@@ -59,32 +70,34 @@ public addonList
     productName: data.productName,
     qty:1,
     addon:'0',
-    pay:1,
-    words:500,
+    total:data.rate * 1,
     otherInfo:[
       {"name":"",
-       "addon":"",
-       "addonqty":0,
-       "addonrate":100
+       "words":500,
       }
     ],
     styleGuide:{
       "audiences":[],
       "industries":[],
-      "keywords":[],
+      "keywords":"",
       "tones":[],
       "voice":"",
-      "sampleBlogUrl":""
+      "thingsToAvoid":"",
+      "thingsToMention":"",
+      "additionalNotes":"",
+      "styleBtnTxt":"Style"
     },
-    rate: data.rate,
-    addontotal:0
+    rate: data.rate
    }
     this.cartProducts.push(this.default_item) 
-    sessionStorage.setItem( "CartProducts", JSON.stringify(this.cartProducts))
+    sessionStorage.setItem("CartProducts", JSON.stringify(this.cartProducts))
+    
   }
+
   removeItem(selectedItem){
     let index = this.cartProducts.indexOf(selectedItem);
     this.cartProducts.splice(index,1)
+    this.subtotalCalculator(this.cartProducts)
   }
  
   checkOutItems(checkoutType){
@@ -93,9 +106,10 @@ public addonList
       this.toastr.Warning('Coming Soon !',"This Feature Will ")
       return
     }
-   sessionStorage.setItem( "CartProducts", JSON.stringify(this.cartProducts))
-   sessionStorage.setItem( "checkoutType", checkoutType)
-   this._router.navigate(['/checkout'])
+   sessionStorage.setItem("CartProducts", JSON.stringify(this.cartProducts))
+   sessionStorage.setItem("projectDetails",JSON.stringify(this.projectDetails))
+   sessionStorage.setItem("checkoutType", checkoutType)
+   this._router.navigate(["/checkout"])
   }
 
    getProducts(type){

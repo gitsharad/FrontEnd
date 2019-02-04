@@ -2,13 +2,13 @@
 <div>
   <div class="row mt-2">
     <div class="col-4"><h2>Project Details</h2></div>
-    <div class="col-3"><h6 style="text-align:center">Project Name </h6><input type="text" class="form-control"></div>
-    <div class="col-3"><h6 style="text-align:center">Project Delivery </h6><select name="delivery" class="form-control">
-      <option>7 Days</option>
-      <option>5 Days</option>
-      <option>4 Days</option>
-      <option>3 Days</option>
-      <option>2 Days</option>
+    <div class="col-3"><h6 style="text-align:center">Project Name </h6><input [(ngModel)]= "projectDetails.projectName" type="text" class="form-control"></div>
+    <div class="col-3"><h6 style="text-align:center">Project Delivery </h6>
+      <select name="delivery" class="form-control" [(ngModel)]="projectDetails.projectDelivery">
+      <option value="7">7 Days Delivery</option>
+      <option value="5">5 Days Delivery</option>
+      <option value="3">3 Days Delivery</option>
+      <option value="2">2 Days Delivery</option>
     </select></div>
   </div>
    <!-- <app-cartitem [itemList]="cartProduct" *ngFor="let cartproduct of cartProducts"></app-cartitem> -->
@@ -25,13 +25,17 @@
         </tr>
       </thead>
       <tbody>
-          <tr  [selectedProduct]="cartproduct" [productData]="productData" [addonList]="addonList" (itemToRemove)="removeItem($event)" [itemindex]="i" *ngFor="let cartproduct of cartProducts; let i = index" class="app-cartitem"></tr>
+          <tr (subtotalCalculator)="subtotalCalculator(data)" [selectedProduct]="cartproduct" [productData]="productData" [addonList]="addonList" (itemToRemove)="removeItem($event)" [itemindex]="i" *ngFor="let cartproduct of cartProducts; let i = index" class="app-cartitem"></tr>
       </tbody>
     </table>
     <div class="container actionButtons mb-3">
       <button name="additem"  (click)="additem()">Add More Item</button>
+      <h2 style="text-align:center">PROJECT SUBTOTAL: {{subtotal}}</h2>
+      
       <div class="row">
+         
       <div class="col-6">
+        
       <div style="text-align:right">
           <button name="checkout"  (click)="checkOutItems($event.target.value)" style="width:200px;height:50px;" class="btn btn-primary" value="launchcontest">Launch A Contest</button>
       <!-- <div class="panel-group">

@@ -1,36 +1,97 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <h4 class="modal-title" id="modal-basic-title">Style Guide</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
-  </div>
+  </div> 
+  <form>
   <div class="modal-body">
-    <form>
       <div class="row">
-        <div class="col-6">
-           <label for="audience">Audience(s)</label>
-           <ul class="multicategory" style="list-style:none;padding:0">
-             <li *ngFor="let audience of cartproduct.styleGuide.audiences; let i = index">{{audience.name}} <i (click)="removeaudience(i)" class="fas fa-times-circle"></i></li>
-             <li class="inputli">
-               <input type="text"  name = "audience" [(ngModel)]="audience" class="form-control" (focusout)="addAudience($event.target.value)">
-            </li>
-           </ul>
+        <div class="col-12">
+            <label>Industrie(s) <small style="color:red">*</small></label>
+          <ul class="multicategory" style="list-style:none;padding:0">
+             <li *ngFor="let industry of cartProduct.styleGuide.industries; let i = index">{{industry}} <i (click)="removeIndustry(i)" class="fas fa-times-circle"></i></li>
+          </ul>
+          <select name="industry" id="industry" class="form-control" (change)="addIndustry($event.target.value)">
+              <option value="{{industry}}" *ngFor="let industry of industryList">{{industry}}</option>
+          </select>
         </div>
-        <div class="col-6">
-                 <input type="text" class="form-control" placeholder="Enter Keywords">
-        </div>
-        <pre >{{ modeldata | json}}</pre>
+        
+      </div>
+      <div class="row">
+          <div class="col-12">
+              <label>Audience(s) <small style="color:red">*</small></label>
+              <ul class="multicategory" style="list-style:none;padding:0">
+                  <li *ngFor="let audience of cartProduct.styleGuide.audiences; let i = index">{{audience}} <i (click)="removeAudience(i)" class="fas fa-times-circle"></i></li>
+              </ul>
+                <select name="audience" id="audience" class="form-control" (change)="addAudience($event.target.value)">
+                  
+                  <option value="{{audience}}" *ngFor="let audience of audienceList">{{audience}}</option>
+                </select>   
+          </div>  
+      </div>
+  <div class="row">
+          <div class="col-12">
+              <label>Tone(s) <small style="color:red">*</small></label>
+              <ul class="multicategory" style="list-style:none;padding:0">
+                  <li *ngFor="let tone of cartProduct.styleGuide.tones; let i = index">{{tone}} <i (click)="removeTone(i)" class="fas fa-times-circle"></i></li>
+               </ul>
+            <select name="tone" id="tone" class="form-control" (change)="addTone($event.target.value)">
+                <option value="{{tone}}" *ngFor="let tone of toneList" [disabled]="comparator(tone)">{{tone}}</option>
+            </select>
+          </div>
+          
   </div>
-    </form>
+  <div class="row">
+      <div class="col-12">
+          <label for="keywords">Voice<small style="color:red">*</small></label>
+          <select name="voice" id="voice" class="form-control" (change)="addVoice($event.target.value)" style="border-top:1px solid lightgray">
+              <option value="{{voice}}" *ngFor="let voice of voiceList">{{voice}}</option>
+           </select>
+               
+      </div>  
+       
+  </div>
+  <div class="row">
+      <div class="col-12">
+          <label for="keywords">Keywords<small style="color:red">*</small></label>
+               <input type="text" name="keywords" [(ngModel)]="cartProduct.styleGuide.keywords" required value = "cartProduct.styleGuide.keywords" class="form-control" placeholder="Enter Keywords">
+      </div> 
+  </div>
+  <div class="row">
+      <div class="col-6">
+          <label for="thingsToAvoid">Things To Avoid <small style="color:red">*</small></label>
+          <textarea name="thingsToAvoid" [(ngModel)]="cartProduct.styleGuide.thingsToAvoid" required class="form-control">
+
+          </textarea>
+      </div>
+      <div class="col-6">
+          <label for="thigsToMention">Things to Mention <small style="color:red">*</small></label>
+          <textarea name="thingsToMention" [(ngModel)]="cartProduct.styleGuide.thingsToMention" required class="form-control">
+
+          </textarea>
+      </div>
+      
+  </div>
+
+  <div class="row">
+      
+      <div class="col-12">
+          <label for="additionalNotes">Additional Notes <small style="color:red">*</small></label>
+          <textarea name="additionalNotes" [(ngModel)]="cartProduct.styleGuide.additionalNotes" required class="form-control">
+
+          </textarea>      </div>  
+  </div>
+   
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+      <button type="button" class="btn btn-outline-dark float-left" aria-label="Close" (click)="modal.dismiss('Cross click')">Close</button>
+    <button type="button" class="btn btn-outline-dark" (click)="saveModalData()">Save</button> <!--modal.close('demo')-->
   </div>
+
+</form>
 </ng-template>
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Style</button>
+<button class="btn btn-sm btn-outline-primary"  (click)="open(content)">{{cartProduct.styleGuide.styleBtnTxt}}</button>
 
-<hr>
-
-<pre>{{closeResult}}</pre>

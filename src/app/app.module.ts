@@ -29,6 +29,7 @@ import { CartitemloaderService } from './cartitemloader.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { IndustrycarouselComponent } from './industrycarousel/industrycarousel.component';
 import { NgbdModalBasic } from "./modal-basic";
+import { FilterPipePipe } from './filter-pipe.pipe';
 
 
 
@@ -50,7 +51,8 @@ import { NgbdModalBasic } from "./modal-basic";
     CartComponent,
     CartitemComponent,
     IndustrycarouselComponent,
-    NgbdModalBasic
+    NgbdModalBasic,
+    FilterPipePipe
     
   ],
   imports: [

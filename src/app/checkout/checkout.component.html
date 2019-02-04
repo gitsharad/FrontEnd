@@ -1,37 +1,54 @@
 
     <div class="container">
         <div class="py-3 text-center">
-         <h2>Checkout</h2>
+         <h2>You Have Selected Best Products That Fullfill Your Requirement</h2>
         </div>
   
         <div class="row">
-          <div class="col-md-4 order-md-2 mb-4">
-            <h4 class="d-flex justify-content-between align-items-center mb-3">
-              <span class="text-muted">Your cart</span>
-              <span class="badge badge-secondary badge-pill">{{cartProducts.length}}</span>
-            </h4>
-            <ul class="list-group mb-3">
-              <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let cartproduct of cartProducts">
-                <div>
-                  <h6 class="my-0">{{cartproduct.productName}}</h6>
-                  <small class="text-muted">{{cartproduct.qty}} qty with {{cartproduct.words}} words</small>
-                  <ul>
-                    <li *ngFor="let info of cartproduct.otherInfo">{{info.name}} {{info.addon}} {{info.addonqty}} {{info.addonrate}} </li>
-                  </ul>
-                </div>
-                <span class="text-muted">Rs. {{cartproduct.rate}}</span>
-              </li>
-            </ul>
-  
-           <!--  <form class="card p-2">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Promo code">
-                <div class="input-group-append">
-                  <button type="submit" class="btn btn-secondary">Redeem</button>
-                </div>
-              </div>
-            </form> -->
+          
+          <div class="col-md-10 order-md-1">
+              <h4 class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="text-muted">Project Summary</span>
+                  <span class="text-muted">Add Beuty to Your Product By Adding </span>
+                  <span class="badge badge-secondary badge-pill">{{cartProducts.length}}</span>
+                  
+                </h4>
+              <table class="table table-hover container">
+                  <tr>
+                      <th>productInfo</th><th style="text-align:center">OtherInfo
+                        <table><tr><th>title</th><th>words</th></tr></table>
+                      </th><th>Total</th><th *ngFor="let addonProduct of addonProducts">{{addonProduct.name}}</th>
+                  </tr>
+                  <tr *ngFor="let cartproduct of cartProducts">
+                      <td>
+                        <div>
+                          <h6 class="my-0">{{cartproduct.productName}}</h6>
+                            <small class="text-muted">{{cartproduct.qty}} qty with {{cartproduct.words}} words</small>
+                        </div>
+                      </td>
+                      <td>
+                          <table>
+                            <tr  *ngFor="let oinfo of cartproduct.otherInfo">
+                              <td>
+                                <label for="title">{{oinfo.name}}</label>
+                              </td>
+                              <td>
+                                  <label for="words">{{oinfo.words}}</label>
+                                </td>
+                            </tr>
+                          </table>
+                      </td>
+                      <td>
+                          <span class="text-muted">{{cartproduct.rate}}</span>
+                        </td>
+                      <td  *ngFor="let addonProduct of addonProducts">
+                          <input type="checkbox" name="{{addonProduct.name}}" id="" ([ngModel])="addonProduct.name">
+                        {{addonProduct.value}}
+                      </td>
+                  </tr>
+                </table>
           </div>
+          <!--
           <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Billing address</h4>
             <form class="needs-validation" novalidate>
@@ -178,6 +195,7 @@
               <hr class="mb-4">
               <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
             </form>
-          </div>
+          </div>-->
         </div>
+        
       </div>

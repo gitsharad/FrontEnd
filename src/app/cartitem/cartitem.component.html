@@ -6,7 +6,7 @@
         </select>
         </td>
         <td><input type="number" name="qty" min="1" [(ngModel)]="currentProductData.qty" class="qtyStyle" (focusout)=addtitlelist($event.target.value)></td>
-       <!-- <td><select name = "words" class="qtyStyle" [(ngModel)]="currentProductData.words"><option value="{{word}}" *ngFor = "let word of wordList">{{word}}</option></select></td> -->
+        <!-- <td><select name = "words" class="qtyStyle" [(ngModel)]="currentProductData.words"><option value="{{word}}" *ngFor = "let word of wordList">{{word}}</option></select></td> -->
         <!--<td><input type="number" name="words[]" class="qtyStyle" [(ngModel)]="currentProductData.words"></td> -->
         <td>
               <div style="max-height:200px;overflow:auto">
@@ -40,13 +40,13 @@
       </td>
        
         <td>
-              {{(currentProductData.qty*currentProductData.rate)+ currentProductData.addontotal}}
+              {{currentProductData.total}}
         </td>
         <td>
                
-              <ngbd-modal-basic [cartProduct]=cartProducts[itemindex]></ngbd-modal-basic>
+              <ngbd-modal-basic [cartProduct]=cartProducts[itemindex] (updateCartProducts)="updateCartProducts()"></ngbd-modal-basic>
             
-            </td>
+       </td>
 
 
 

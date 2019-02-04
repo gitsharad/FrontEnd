@@ -14,9 +14,12 @@ export class CartitemComponent implements OnInit {
  public removeProduct
  public currentProductData
  public cartProducts 
+ public audienceList
  @Output() itemToRemove: EventEmitter<string>= new EventEmitter()
+ @Output() subtotalCalculator: EventEmitter<object>= new EventEmitter()
   constructor(public toastr: ToastrServiceService) { 
     this.cartProducts =  JSON.parse(sessionStorage.getItem('CartProducts'))
+    this.audienceList = ["audience1","audience2","audience3"]
   }
   public numbers
   public wordList
@@ -33,21 +36,22 @@ export class CartitemComponent implements OnInit {
     this.itemToRemove.emit(this.removeProduct)
   }
 
-  removeaudience(index){
-    this.currentProductData.styleGuide.audiences.splice(index,1)
+  subtotalCalc(){
+   this.subtotalCalculator.emit(this.cartProducts)
   }
 
   onChange(productId){
-    let data =  _.find(this.productData,{_id: productId})
-    this.currentProductData.productName = data.productName  
+    let data = _.find(this.productData,{_id: productId})
+    this.currentProductData.productName = data.productName
+    this.currentProductData.rate = data.rate
+    this.currentProductData.total = this.currentProductData.rate * this.currentProductData.qty
+    this.subtotalCalc()
+  }
+  
+  updateCartProducts(){
+    sessionStorage.setItem( "CartProducts", JSON.stringify(this.cartProducts))
   }
 
-  getStyleData(itemindex){
-   
-  }
-  addonchange(index){
-    this.currentProductData.otherInfo[index].addonqty = 0
-  }
   wordscountchange (){
     let total = 0
     for(let i = 0 ; i < this.currentProductData.otherInfo.length; i++){
@@ -59,25 +63,27 @@ export class CartitemComponent implements OnInit {
   addtitlelist(event){
     if(event <= 0){
       this.toastr.Error('','Quantity should be greater than Zero')
-      this.currentProductData.qty = 1
-      return
-    }
-    if(this.currentProductData.otherInfo.length > event){
-      let totalLength = this.currentProductData.otherInfo.length
-      for(let k = event ; k<totalLength ; k++ ){
-        this.currentProductData.otherInfo.splice(k,1)
+      this.currentProductData.qty = this.currentProductData.otherInfo.length
+      this.currentProductData.total = this.currentProductData.rate * this.currentProductData.otherInfo.length
+      this.subtotalCalc()
+    } else {
+      this.currentProductData.total = this.currentProductData.rate * this.currentProductData.qty
+      this.subtotalCalc()
+      if(this.currentProductData.otherInfo.length > event){
+        let totalLength = this.currentProductData.otherInfo.length
+        for(let k = event ; k<totalLength ; k++ ){
+          this.currentProductData.otherInfo.splice(k,1)
+        }
       }
+      
+      for(let i = this.currentProductData.otherInfo.length; i< event ; i++){
+        this.currentProductData.otherInfo[i] =  {"name":"",
+              "addon":"",
+              "addonqty":0,
+              "addonrate":100
+              }
+      }  
     }
-    for(let i = this.currentProductData.otherInfo.length; i< event ; i++){
-      this.currentProductData.otherInfo[i] =  {"name":"",
-            "addon":"",
-            "addonqty":0,
-            "addonrate":100
-            }
-    }  
   }
-
-  addAudience(name){
-    this.audience = ""
-  }
+ 
 }
