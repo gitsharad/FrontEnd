@@ -13,7 +13,7 @@
                 <ul class="multilanguage" style="list-style:none;padding:0">
                         <li *ngFor="let industry of cartProduct.styleGuide.industries; let i = index">{{industry}} <i (click)="removeIndustry(i)" class="fas fa-times-circle"></i></li>
                         <li class="inputli">
-                          <input type="text" autocomplete="off" name = "industry" [ngModel]="industry" class="form-control" autoFocus (click)="changedStatus()"> <!--addIndustry($event.target.value)-->
+                          <input type="text" autocomplete="off" name = "industry" [ngModel]="industry" class="form-control" autofocus placeholder="click to add Industries" (click)="changedStatus()"> <!--addIndustry($event.target.value)-->
                         </li>
                 </ul>
                
@@ -32,14 +32,25 @@
       </div>
       <div class="row">
           <div class="col-12">
-              <label>Audience(s) <small style="color:red">*</small></label>
+            <!--  <label>Audience(s) <small style="color:red">*</small></label>
               <ul class="multicategory" style="list-style:none;padding:0">
                   <li *ngFor="let audience of cartProduct.styleGuide.audiences; let i = index">{{audience}} <i (click)="removeAudience(i)" class="fas fa-times-circle"></i></li>
               </ul>
                 <select name="audience" id="audience" class="form-control" (change)="addAudience($event.target.value)">
                   
                   <option value="{{audience}}" *ngFor="let audience of audienceList">{{audience}}</option>
-                </select>   
+                </select>    -->
+                <ul class="multilanguage" style="list-style:none;padding:0">
+                        <li *ngFor="let audience of cartProduct.styleGuide.audiences; let i = index">{{audience}} <i (click)="removeAudience(i)" class="fas fa-times-circle"></i></li>
+                        <li class="inputli">
+                          <input type="text" autocomplete="off" name = "industry" [ngModel]="industry" class="form-control" autofocus placeholder="click to add Industries" (click)="changedStatus()"> <!--addIndustry($event.target.value)-->
+                        </li>
+                </ul>
+               
+                    <ul name="industry" id="industry" class="customDropDown" [style.display]="industryStatus ? 'block' : 'none'">
+                            <li value="{{industry}}" *ngFor="let industry of industryList" (click)="addIndustry(industry)">{{industry}}</li>
+                    </ul>
+              
           </div>  
       </div>
   <div class="row">
