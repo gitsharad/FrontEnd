@@ -29,7 +29,8 @@ import { CartitemloaderService } from './cartitemloader.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { IndustrycarouselComponent } from './industrycarousel/industrycarousel.component';
 import { NgbdModalBasic } from "./modal-basic";
-import { FilterPipePipe } from './filter-pipe.pipe';
+import {AutofocusDirective} from './auto-focus.directive';
+
 
 
 
@@ -52,7 +53,8 @@ import { FilterPipePipe } from './filter-pipe.pipe';
     CartitemComponent,
     IndustrycarouselComponent,
     NgbdModalBasic,
-    FilterPipePipe
+    AutofocusDirective
+    
     
   ],
   imports: [

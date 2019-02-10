@@ -46,6 +46,7 @@ export class CartitemComponent implements OnInit {
     this.currentProductData.rate = data.rate
     this.currentProductData.total = this.currentProductData.rate * this.currentProductData.qty
     this.subtotalCalc()
+    this.updateCartProducts()
   }
   
   updateCartProducts(){

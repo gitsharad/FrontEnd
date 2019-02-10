@@ -101,15 +101,19 @@ public subtotal
   }
  
   checkOutItems(checkoutType){
-    if(checkoutType==="hireawriter")
-    {
-      this.toastr.Warning('Coming Soon !',"This Feature Will ")
-      return
-    }
-   sessionStorage.setItem("CartProducts", JSON.stringify(this.cartProducts))
-   sessionStorage.setItem("projectDetails",JSON.stringify(this.projectDetails))
-   sessionStorage.setItem("checkoutType", checkoutType)
-   this._router.navigate(["/checkout"])
+   if(this.validateField()){
+      sessionStorage.setItem("CartProducts", JSON.stringify(this.cartProducts))
+      sessionStorage.setItem("projectDetails",JSON.stringify(this.projectDetails))
+      sessionStorage.setItem("checkoutType", checkoutType)
+      this._router.navigate(["/checkout"])
+   } else {
+     return 
+   } 
+   
+  }
+
+  validateField(){
+    return true
   }
 
    getProducts(type){

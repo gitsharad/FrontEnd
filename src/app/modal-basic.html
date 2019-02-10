@@ -9,15 +9,26 @@
   <div class="modal-body">
       <div class="row">
         <div class="col-12">
-            <label>Industrie(s) <small style="color:red">*</small></label>
-          <ul class="multicategory" style="list-style:none;padding:0">
+                <label>Industrie(s) <small style="color:red">*</small></label>
+                <ul class="multilanguage" style="list-style:none;padding:0">
+                        <li *ngFor="let industry of cartProduct.styleGuide.industries; let i = index">{{industry}} <i (click)="removeIndustry(i)" class="fas fa-times-circle"></i></li>
+                        <li class="inputli">
+                          <input type="text" autocomplete="off" name = "industry" [ngModel]="industry" class="form-control" autoFocus (click)="changedStatus()"> <!--addIndustry($event.target.value)-->
+                        </li>
+                </ul>
+               
+                    <ul name="industry" id="industry" class="customDropDown" [style.display]="industryStatus ? 'block' : 'none'">
+                            <li value="{{industry}}" *ngFor="let industry of industryList" (click)="addIndustry(industry)">{{industry}}</li>
+                    </ul>
+              
+            
+          <!--<ul class="multicategory" style="list-style:none;padding:0">
              <li *ngFor="let industry of cartProduct.styleGuide.industries; let i = index">{{industry}} <i (click)="removeIndustry(i)" class="fas fa-times-circle"></i></li>
           </ul>
           <select name="industry" id="industry" class="form-control" (change)="addIndustry($event.target.value)">
-              <option value="{{industry}}" *ngFor="let industry of industryList">{{industry}}</option>
-          </select>
-        </div>
-        
+                <option value="{{industry}}" *ngFor="let industry of industryList">{{industry}}</option>
+          </select> -->
+        </div>  
       </div>
       <div class="row">
           <div class="col-12">

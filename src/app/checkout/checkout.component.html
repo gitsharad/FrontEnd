@@ -17,13 +17,14 @@
                   <tr>
                       <th>productInfo</th><th style="text-align:center">OtherInfo
                         <table><tr><th>title</th><th>words</th></tr></table>
-                      </th><th>Total</th><th *ngFor="let addonProduct of addonProducts">{{addonProduct.name}}</th>
+                      </th><th style="text-align:center">Add On Info <table><tr><th *ngFor="let addonProduct of addonProducts">{{addonProduct.name}}</th></tr></table></th>
+                      <th>Total</th>
                   </tr>
                   <tr *ngFor="let cartproduct of cartProducts">
                       <td>
                         <div>
                           <h6 class="my-0">{{cartproduct.productName}}</h6>
-                            <small class="text-muted">{{cartproduct.qty}} qty with {{cartproduct.words}} words</small>
+                           <!-- <small class="text-muted">{{cartproduct.qty}}</small> -->
                         </div>
                       </td>
                       <td>
@@ -38,12 +39,20 @@
                             </tr>
                           </table>
                       </td>
+                     
                       <td>
-                          <span class="text-muted">{{cartproduct.rate}}</span>
-                        </td>
-                      <td  *ngFor="let addonProduct of addonProducts">
-                          <input type="checkbox" name="{{addonProduct.name}}" id="" ([ngModel])="addonProduct.name">
-                        {{addonProduct.value}}
+                        <table style="width: 100%;">
+                          <tr  *ngFor="let oinfo of cartproduct.otherInfo">
+                            <td *ngFor="let addonProduct of addonProducts">
+                                <input type="checkbox" name="{{addonProduct.name}}" id="" ([ngModel])="addonProduct.name">
+                                {{addonProduct.value}}
+                            </td>
+                          </tr>
+                        </table>
+                         
+                      </td>
+                      <td>
+                          <span class="text-muted">{{cartproduct.total}}</span>
                       </td>
                   </tr>
                 </table>
