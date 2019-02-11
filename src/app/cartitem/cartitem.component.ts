@@ -78,11 +78,9 @@ export class CartitemComponent implements OnInit {
       }
       
       for(let i = this.currentProductData.otherInfo.length; i< event ; i++){
-        this.currentProductData.otherInfo[i] =  {"name":"",
-              "addon":"",
-              "addonqty":0,
-              "addonrate":100
-              }
+        this.currentProductData.otherInfo[i] =   {"name":"",
+        "words":500
+       }
       }  
     }
   }
