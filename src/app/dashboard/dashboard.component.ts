@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  route: any;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
-  
+  showProducts() {
+    console.log("heeyyy")
+    this.router.navigate(['products']);
+  }
+
+  showOrders() {
+    console.log("fwrwe");
+    this.router.navigate(['/orders'], { relativeTo: this.route });
+  }
+
 }

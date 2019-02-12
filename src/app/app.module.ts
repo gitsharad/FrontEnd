@@ -30,6 +30,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { IndustrycarouselComponent } from './industrycarousel/industrycarousel.component';
 import { NgbdModalBasic } from "./modal-basic";
 import {AutofocusDirective} from './auto-focus.directive';
+import { DashboardOrdersComponent } from './dashboard-orders/dashboard-orders.component';
+import { DashboardProductsComponent } from './dashboard-products/dashboard-products.component';
 
 
 
@@ -53,7 +55,9 @@ import {AutofocusDirective} from './auto-focus.directive';
     CartitemComponent,
     IndustrycarouselComponent,
     NgbdModalBasic,
-    AutofocusDirective
+    AutofocusDirective,
+    DashboardOrdersComponent,
+    DashboardProductsComponent
     
     
   ],

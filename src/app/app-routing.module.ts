@@ -11,63 +11,69 @@ import { ServicesComponent } from './services/services.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { DashboardOrdersComponent } from './dashboard-orders/dashboard-orders.component';
+import { DashboardProductsComponent } from './dashboard-products/dashboard-products.component';
 
 const routes: Routes = [
   {
-    path:'',
+    path: '',
     component: HomeComponent,
     pathMatch: 'full'
   },
   {
-    path:'home',
+    path: 'home',
     component: HomeComponent,
     pathMatch: 'full'
   },
   {
-    path:'login',
+    path: 'login',
     component: LoginComponent
   },
   {
-    path:'register',
+    path: 'register',
     component: RegisterComponent
   },
   {
-    path:'home',
+    path: 'home',
     component: HomeComponent,
     pathMatch: 'full'
   },
   {
-    path:'dashboard',
+    path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'orders', component: DashboardOrdersComponent },
+      { path: 'products', component: DashboardProductsComponent }
+    ]
   },
   {
-    path:'profile',
+    path: 'profile',
     component: ProfileComponent,
     canActivate: [AuthGuard]
   },
   {
-    path:'booksampleconsultation',
+    path: 'booksampleconsultation',
     component: BooksampleconsultationComponent,
     pathMatch: 'full'
   },
   {
-    path:'services',
+    path: 'services',
     component: ServicesComponent,
     pathMatch: 'full'
   },
   {
-    path:'categories',
+    path: 'categories',
     component: CategoriesComponent,
     pathMatch: 'full'
   },
   {
-    path:'cart',
+    path: 'cart',
     component: CartComponent,
     pathMatch: 'full'
   },
   {
-    path:'checkout',
+    path: 'checkout',
     component: CheckoutComponent,
     pathMatch: 'full'
   }
