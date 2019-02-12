@@ -69,7 +69,6 @@ public subtotal
     _id: data._id,
     productName: data.productName,
     qty:1,
-    addon:'0',
     total:data.rate * 1,
     otherInfo:[
       {"name":"",

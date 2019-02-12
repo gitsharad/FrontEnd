@@ -9,16 +9,16 @@
   <div class="modal-body">
       <div class="row">
         <div class="col-12">
-                <label>Industrie(s) <small style="color:red">*</small></label>
+                <label>Industrie(s) </label>
                 <ul class="multilanguage" style="list-style:none;padding:0">
-                        <li *ngFor="let industry of cartProduct.styleGuide.industries; let i = index">{{industry}} <i (click)="removeIndustry(i)" class="fas fa-times-circle"></i></li>
+                        <li *ngFor="let industry of cartProduct.styleGuide.industries; let i = index">{{industry}} <i (click)="styleCrudOperation('industries',industry,'remove',i)" class="fas fa-times-circle"></i></li>
                         <li class="inputli">
-                          <input type="text" autocomplete="off" name = "industry" [ngModel]="industry" class="form-control" autofocus placeholder="click to add Industries" (click)="changedStatus()"> <!--addIndustry($event.target.value)-->
+                          <input type="text" readonly autocomplete="off" name = "industry"  class="form-control"  placeholder="click to add Industrie(s)" (click)="changedStatus('industries')"> <!--addIndustry($event.target.value)-->
                         </li>
                 </ul>
                
-                    <ul name="industry" id="industry" class="customDropDown" [style.display]="industryStatus ? 'block' : 'none'">
-                            <li value="{{industry}}" *ngFor="let industry of industryList" (click)="addIndustry(industry)">{{industry}}</li>
+                    <ul name="industry" id="industry" class="customDropDown" [style.display]="dropdownStatusIndustry ? 'block' : 'none'">
+                            <li value="{{industry}}" *ngFor="let industry of industryList" (click)="styleCrudOperation('industries',industry,'add')">{{industry}}</li>
                     </ul>
               
             
@@ -32,8 +32,8 @@
       </div>
       <div class="row">
           <div class="col-12">
-            <!--  <label>Audience(s) <small style="color:red">*</small></label>
-              <ul class="multicategory" style="list-style:none;padding:0">
+             <label>Audience(s)</label>
+             <!--  <ul class="multicategory" style="list-style:none;padding:0">
                   <li *ngFor="let audience of cartProduct.styleGuide.audiences; let i = index">{{audience}} <i (click)="removeAudience(i)" class="fas fa-times-circle"></i></li>
               </ul>
                 <select name="audience" id="audience" class="form-control" (change)="addAudience($event.target.value)">
@@ -41,33 +41,42 @@
                   <option value="{{audience}}" *ngFor="let audience of audienceList">{{audience}}</option>
                 </select>    -->
                 <ul class="multilanguage" style="list-style:none;padding:0">
-                        <li *ngFor="let audience of cartProduct.styleGuide.audiences; let i = index">{{audience}} <i (click)="removeAudience(i)" class="fas fa-times-circle"></i></li>
+                        <li *ngFor="let audience of cartProduct.styleGuide.audiences; let i = index">{{audience}} <i (click)="styleCrudOperation('audiences',audience,'remove',i)" class="fas fa-times-circle"></i></li>
                         <li class="inputli">
-                          <input type="text" autocomplete="off" name = "industry" [ngModel]="industry" class="form-control" autofocus placeholder="click to add Industries" (click)="changedStatus()"> <!--addIndustry($event.target.value)-->
+                          <input type="text" readonly autocomplete="off" name = "audience" class="form-control"  placeholder="click to add Audience(s)" (click)="changedStatus('audiences')"> <!--addIndustry($event.target.value)-->
                         </li>
                 </ul>
                
-                    <ul name="industry" id="industry" class="customDropDown" [style.display]="industryStatus ? 'block' : 'none'">
-                            <li value="{{industry}}" *ngFor="let industry of industryList" (click)="addIndustry(industry)">{{industry}}</li>
+                    <ul name="audience" id="audience" class="customDropDown" [style.display]="dropdownStatusAudience ? 'block' : 'none'">
+                            <li value="{{audience}}" *ngFor="let audience of audienceList" (click)="styleCrudOperation('audiences',audience,'add')">{{audience}}</li>
                     </ul>
               
           </div>  
       </div>
   <div class="row">
           <div class="col-12">
-              <label>Tone(s) <small style="color:red">*</small></label>
-              <ul class="multicategory" style="list-style:none;padding:0">
+              <label>Tone(s) </label>
+             <!-- <ul class="multicategory" style="list-style:none;padding:0">
                   <li *ngFor="let tone of cartProduct.styleGuide.tones; let i = index">{{tone}} <i (click)="removeTone(i)" class="fas fa-times-circle"></i></li>
                </ul>
             <select name="tone" id="tone" class="form-control" (change)="addTone($event.target.value)">
                 <option value="{{tone}}" *ngFor="let tone of toneList" [disabled]="comparator(tone)">{{tone}}</option>
-            </select>
+            </select> -->
+            <ul class="multilanguage" style="list-style:none;padding:0">
+                    <li *ngFor="let tone of cartProduct.styleGuide.tones; let i = index">{{tone}} <i (click)="styleCrudOperation('tones',tone,'remove',i)" class="fas fa-times-circle"></i></li>
+                    <li class="inputli">
+                      <input type="text" readonly autocomplete="off" name = "tone" class="form-control"  placeholder="click to add tone(s)" (click)="changedStatus('tones')"> <!--addIndustry($event.target.value)-->
+                    </li>
+            </ul>
+           <ul name="tone" id="tone" class="customDropDown" [style.display]="dropdownStatusTone ? 'block' : 'none'">
+                        <li value="{{tone}}" *ngFor="let tone of toneList" (click)="styleCrudOperation('tones',tone,'add')">{{tone}}</li>
+           </ul>
           </div>
           
   </div>
   <div class="row">
       <div class="col-12">
-          <label for="keywords">Voice<small style="color:red">*</small></label>
+          <label for="keywords">Voice</label>
           <select name="voice" id="voice" class="form-control" (change)="addVoice($event.target.value)" style="border-top:1px solid lightgray">
               <option value="{{voice}}" *ngFor="let voice of voiceList">{{voice}}</option>
            </select>
@@ -77,19 +86,19 @@
   </div>
   <div class="row">
       <div class="col-12">
-          <label for="keywords">Keywords<small style="color:red">*</small></label>
+          <label for="keywords">Keywords</label>
                <input type="text" name="keywords" [(ngModel)]="cartProduct.styleGuide.keywords" required value = "cartProduct.styleGuide.keywords" class="form-control" placeholder="Enter Keywords">
       </div> 
   </div>
   <div class="row">
       <div class="col-6">
-          <label for="thingsToAvoid">Things To Avoid <small style="color:red">*</small></label>
+          <label for="thingsToAvoid">Things To Avoid </label>
           <textarea name="thingsToAvoid" [(ngModel)]="cartProduct.styleGuide.thingsToAvoid" required class="form-control">
 
           </textarea>
       </div>
       <div class="col-6">
-          <label for="thigsToMention">Things to Mention <small style="color:red">*</small></label>
+          <label for="thigsToMention">Things to Mention </label>
           <textarea name="thingsToMention" [(ngModel)]="cartProduct.styleGuide.thingsToMention" required class="form-control">
 
           </textarea>
@@ -100,7 +109,7 @@
   <div class="row">
       
       <div class="col-12">
-          <label for="additionalNotes">Additional Notes <small style="color:red">*</small></label>
+          <label for="additionalNotes">Additional Notes </label>
           <textarea name="additionalNotes" [(ngModel)]="cartProduct.styleGuide.additionalNotes" required class="form-control">
 
           </textarea>      </div>  
