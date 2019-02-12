@@ -36,7 +36,9 @@ export class HomeComponent implements OnInit {
     total:prod.rate*1,
     otherInfo:[
       {"name":"",
-      "words":500
+      "words":500,
+      "addonInfo":[
+      ]
       }
     ],
     styleGuide:{

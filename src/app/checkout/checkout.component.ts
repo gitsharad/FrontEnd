@@ -9,6 +9,18 @@ export class CheckoutComponent implements OnInit {
 public cartProducts
 public addonProducts
   constructor() { }
+ 
+  addAddon(event,index,cartindex,oinfoIndex){
+   if(event.checked){
+    this.cartProducts[cartindex].otherInfo[oinfoIndex].addonInfo.push({
+      "name": event.name,
+      "value": event.value
+    })
+  } else {
+    this.cartProducts[cartindex].otherInfo[oinfoIndex].addonInfo.splice(index,1)
+  }
+    sessionStorage.setItem("CartProducts", JSON.stringify(this.cartProducts)) 
+  }
 
   ngOnInit() {
     this.cartProducts = JSON.parse(sessionStorage.getItem('CartProducts'))

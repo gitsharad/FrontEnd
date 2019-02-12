@@ -27,7 +27,10 @@ public subtotal
       words:500,
       otherInfo:[
         {"name":"",
-        "words":500
+        "words":500,
+        "addonInfo":[
+         
+        ]
         }
       ],
       styleGuide:{
@@ -73,6 +76,9 @@ public subtotal
     otherInfo:[
       {"name":"",
        "words":500,
+       "addonInfo":[
+
+       ]
       }
     ],
     styleGuide:{

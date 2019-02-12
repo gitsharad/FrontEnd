@@ -11,7 +11,6 @@
                   <span class="text-muted">Project Summary</span>
                   <span class="text-muted">Add Beuty to Your Product By Adding </span>
                   <span class="badge badge-secondary badge-pill">{{cartProducts.length}}</span>
-                  
                 </h4>
               <table class="table table-hover container">
                   <tr>
@@ -20,7 +19,7 @@
                       </th><th style="text-align:center">Add On Info <table><tr><th *ngFor="let addonProduct of addonProducts">{{addonProduct.name}}</th></tr></table></th>
                       <th>Total</th>
                   </tr>
-                  <tr *ngFor="let cartproduct of cartProducts">
+                  <tr *ngFor="let cartproduct of cartProducts; let cartProdIndex=index">
                       <td>
                         <div>
                           <h6 class="my-0">{{cartproduct.productName}}</h6>
@@ -42,10 +41,9 @@
                      
                       <td>
                         <table style="width: 100%;">
-                          <tr  *ngFor="let oinfo of cartproduct.otherInfo">
-                            <td *ngFor="let addonProduct of addonProducts">
-                                <input type="checkbox" name="{{addonProduct.name}}" id="" ([ngModel])="addonProduct.name">
-                                {{addonProduct.value}}
+                          <tr  *ngFor="let oinfo of cartproduct.otherInfo; let oinfoIndex=index">
+                            <td *ngFor="let addonProduct of addonProducts;let i=index">
+                                <input type="checkbox" name="{{addonProduct.name}}" id="" (change)="addAddon($event.target,i,cartProdIndex,oinfoIndex)" value="{{addonProduct.value}}">{{addonProduct.value}}
                             </td>
                           </tr>
                         </table>
