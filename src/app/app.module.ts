@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { MatTableModule } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from "@angular/common/http";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
@@ -26,10 +26,10 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { CartComponent } from './cart/cart.component';
 import { CartitemComponent } from './cartitem/cartitem.component';
 import { CartitemloaderService } from './cartitemloader.service';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IndustrycarouselComponent } from './industrycarousel/industrycarousel.component';
 import { NgbdModalBasic } from "./modal-basic";
-import {AutofocusDirective} from './auto-focus.directive';
+import { AutofocusDirective } from './auto-focus.directive';
 import { DashboardOrdersComponent } from './dashboard-orders/dashboard-orders.component';
 import { DashboardProductsComponent } from './dashboard-products/dashboard-products.component';
 
@@ -58,26 +58,27 @@ import { DashboardProductsComponent } from './dashboard-products/dashboard-produ
     AutofocusDirective,
     DashboardOrdersComponent,
     DashboardProductsComponent
-    
-    
+
+
   ],
   imports: [
     BrowserModule,
+    MatTableModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
     NgbModule.forRoot()
-    
+
   ],
-  providers: [AuthService, AuthGuard,{
+  providers: [AuthService, AuthGuard, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
-    multi:true,
+    multi: true,
   },
-  ToastrServiceService,
-  ProductService,
-  CartitemloaderService
-],
+    ToastrServiceService,
+    ProductService,
+    CartitemloaderService
+  ],
   bootstrap: [AppComponent],
   entryComponents: [CartitemComponent]
 })
