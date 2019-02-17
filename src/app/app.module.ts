@@ -1,6 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatTableModule } from '@angular/material';
+import {
+  MatInputModule,
+  MatProgressSpinnerModule,
+  MatSortModule,
+  MatTableModule,
+  MatIconModule,
+  MatButtonModule,
+  MatCardModule,
+  MatFormFieldModule
+} from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from "@angular/common/http";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
@@ -10,7 +19,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AuthService } from './auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -32,6 +41,9 @@ import { NgbdModalBasic } from "./modal-basic";
 import { AutofocusDirective } from './auto-focus.directive';
 import { DashboardOrdersComponent } from './dashboard-orders/dashboard-orders.component';
 import { DashboardProductsComponent } from './dashboard-products/dashboard-products.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { OrderAddComponent } from './order-add/order-add.component';
+import { OrderEditComponent } from './order-edit/order-edit.component';
 
 
 
@@ -57,14 +69,25 @@ import { DashboardProductsComponent } from './dashboard-products/dashboard-produ
     NgbdModalBasic,
     AutofocusDirective,
     DashboardOrdersComponent,
-    DashboardProductsComponent
+    DashboardProductsComponent,
+    OrderDetailComponent,
+    OrderAddComponent,
+    OrderEditComponent
 
 
   ],
   imports: [
     BrowserModule,
+    MatInputModule,
     MatTableModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     NgbModule.forRoot()
