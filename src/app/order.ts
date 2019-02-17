@@ -6,7 +6,7 @@ export class Order {
     status: string;
     name: string;
     words: number;
-
+    orderId: number;
 }
 
 

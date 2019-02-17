@@ -23,7 +23,7 @@ import * as _ from 'lodash';
 export class DashboardOrdersComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['productName', 'qty', 'rate', 'status', 'name', 'words'];
+  displayedColumns: string[] = ['productName', 'qty', 'rate', 'status', 'name', 'words', 'orderId'];
   data: Order[] = [];
   //data: Array<any> = []
   isLoadingResults = true;
