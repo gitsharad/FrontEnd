@@ -47,9 +47,9 @@
                         </li>
                 </ul>
                
-                    <ul name="audience" id="audience" class="customDropDown" [style.display]="dropdownStatusAudience ? 'block' : 'none'">
-                            <li value="{{audience}}" *ngFor="let audience of audienceList" (click)="styleCrudOperation('audiences',audience,'add')">{{audience}}</li>
-                    </ul>
+                <ul name="audience" id="audience" class="customDropDown" [style.display]="dropdownStatusAudience ? 'block' : 'none'">
+                          <li value="{{audience}}" *ngFor="let audience of audienceList" (click)="styleCrudOperation('audiences',audience,'add')">{{audience}}</li>
+                </ul>
               
           </div>  
       </div>
