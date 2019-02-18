@@ -32,7 +32,6 @@ export class DashboardOrdersComponent implements OnInit {
   constructor(private api: OrdersService) { }
 
   ngOnInit() {
-    localStorage.getItem('email')
     console.log("hey you are in orders table");
     this.api.getOrders(localStorage.getItem('email'))
       .subscribe(res => {
