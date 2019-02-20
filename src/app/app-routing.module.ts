@@ -13,6 +13,9 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { DashboardOrdersComponent } from './dashboard-orders/dashboard-orders.component';
 import { DashboardProductsComponent } from './dashboard-products/dashboard-products.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { OrderAddComponent } from './order-add/order-add.component';
+import { OrderEditComponent } from './order-edit/order-edit.component';
 
 const routes: Routes = [
   {
@@ -43,7 +46,14 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'orders', component: DashboardOrdersComponent },
+      {
+        path: 'orders', component: DashboardOrdersComponent,
+        children: [
+          { path: 'detail', component: OrderDetailComponent, data: { title: 'Order Details' } },
+          { path: 'add', component: OrderAddComponent, data: { title: 'Add Order' } },
+          { path: 'edit', component: OrderEditComponent, data: { title: 'Edit Order' } },
+        ]
+      },
       { path: 'products', component: DashboardProductsComponent }
     ]
   },
