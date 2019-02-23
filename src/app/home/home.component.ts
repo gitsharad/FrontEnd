@@ -72,15 +72,11 @@ export class HomeComponent implements OnInit {
   }
 
   letStart(prod){
-    sessionStorage.setItem( "CartProducts", JSON.stringify(this.addtoCartProduct))
-    sessionStorage.setItem('projectDetails',JSON.stringify({
-      "projectName":"",
-      "projectDelivery":"7"
-    }))
+    sessionStorage.setItem( "CartProducts", JSON.stringify({'productList':this.addtoCartProduct,
+       "projectName":"",
+       "projectDelivery":"7"
+     }))
     this._router.navigate(['/cart'])
   } 
-
-
-
 
 }

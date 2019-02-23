@@ -44,6 +44,7 @@ import { DashboardProductsComponent } from './dashboard-products/dashboard-produ
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { OrderAddComponent } from './order-add/order-add.component';
 import { OrderEditComponent } from './order-edit/order-edit.component';
+import { LaunchComponent } from './launch/launch.component';
 
 
 
@@ -72,7 +73,8 @@ import { OrderEditComponent } from './order-edit/order-edit.component';
     DashboardProductsComponent,
     OrderDetailComponent,
     OrderAddComponent,
-    OrderEditComponent
+    OrderEditComponent,
+    LaunchComponent
 
 
   ],

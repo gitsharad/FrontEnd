@@ -59,7 +59,7 @@ export class NgbdModalBasic {
   }
  
   comparator(value){
-    var newArray = _.find(this.cartProduct.styleGuide.tones, value.trim());
+    var newArray = _.find(this.cartProduct['productList'].styleGuide.tones, value.trim());
    if(newArray){
      return true
     } else {

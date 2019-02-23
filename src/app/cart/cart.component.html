@@ -2,9 +2,9 @@
 <div>
   <div class="row mt-2">
     <div class="col-4"><h2>Project Details</h2></div>
-    <div class="col-3"><h6 style="text-align:center">Project Name </h6><input [(ngModel)]= "projectDetails.projectName" type="text" class="form-control"></div>
+    <div class="col-3"><h6 style="text-align:center">Project Name </h6><input [(ngModel)]= "cartProducts.projectName" type="text" class="form-control"></div>
     <div class="col-3"><h6 style="text-align:center">Project Delivery </h6>
-      <select name="delivery" class="form-control" [(ngModel)]="projectDetails.projectDelivery">
+      <select name="delivery" class="form-control" [(ngModel)]="cartProducts.projectDelivery">
       <option value="7">7 Days Delivery</option>
       <option value="5">5 Days Delivery</option>
       <option value="3">3 Days Delivery</option>
@@ -25,7 +25,7 @@
         </tr>
       </thead>
       <tbody>
-          <tr (subtotalCalculator)="subtotalCalculator(data)" [selectedProduct]="cartproduct" [productData]="productData" [addonList]="addonList" (itemToRemove)="removeItem($event)" [itemindex]="i" *ngFor="let cartproduct of cartProducts; let i = index" class="app-cartitem"></tr>
+          <tr (subtotalCalculator)="subtotalCalculator(data)" [selectedProduct]="cartproduct" [productData]="productData" [addonList]="addonList" (itemToRemove)="removeItem($event)" [itemindex]="i" *ngFor="let cartproduct of cartProducts.productList; let i = index" class="app-cartitem"></tr>
       </tbody>
     </table>
     <div class="container actionButtons mb-3">

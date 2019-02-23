@@ -32,11 +32,9 @@ export class DashboardOrdersComponent implements OnInit {
   constructor(private api: OrdersService) { }
 
   ngOnInit() {
-    console.log("hey you are in orders table");
     this.api.getOrders(localStorage.getItem('email'))
       .subscribe(res => {
         this.data = res;
-        console.log(this.data);
         this.isLoadingResults = false;
       }, err => {
         console.log(err);

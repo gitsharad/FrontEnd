@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -8,16 +9,16 @@ import { Component, OnInit } from '@angular/core';
 export class CheckoutComponent implements OnInit {
 public cartProducts
 public addonProducts
-  constructor() { }
+  constructor(private router: Router , private route: ActivatedRoute) { }
  
   addAddon(event,index,cartindex,oinfoIndex){
    if(event.checked){
-    this.cartProducts[cartindex].otherInfo[oinfoIndex].addonInfo.push({
+    this.cartProducts['productList'][cartindex].otherInfo[oinfoIndex].addonInfo.push({
       "name": event.name,
       "value": event.value
     })
   } else {
-    this.cartProducts[cartindex].otherInfo[oinfoIndex].addonInfo.splice(index,1)
+    this.cartProducts['productList'][cartindex].otherInfo[oinfoIndex].addonInfo.splice(index,1)
   }
     sessionStorage.setItem("CartProducts", JSON.stringify(this.cartProducts)) 
   }
@@ -53,6 +54,9 @@ public addonProducts
       "value":"70"
     }
   ]
+  }
+  launch() {
+    this.router.navigate(['launch']);
   }
 
 }

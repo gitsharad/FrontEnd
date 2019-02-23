@@ -10,11 +10,10 @@ import { Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
 
-public cartProducts : Array <any> = []
+public cartProducts  = {}
 public productData 
 public default_item
 public addonList
-public projectDetails = {}
 public subtotal 
  
   constructor(public productService: ProductService, public toastr: ToastrServiceService , private _router: Router) {
@@ -53,15 +52,14 @@ public subtotal
     if(JSON.parse(sessionStorage.getItem('CartProducts'))){
       this.cartProducts =  JSON.parse(sessionStorage.getItem('CartProducts'))
     }
-    this.projectDetails = JSON.parse(sessionStorage.getItem('projectDetails'))
     this.getProducts('regular')
     this.getProducts('addon')
-    this.subtotalCalculator(this.cartProducts)
+    this.subtotalCalculator(this.cartProducts['productList'])
   }
 
   subtotalCalculator(data){
       if(!data){
-      data =  this.cartProducts
+      data =  this.cartProducts['productList']
       }
       this.subtotal =_.sumBy(data, function(o) { return o.total; });
    }
@@ -94,21 +92,20 @@ public subtotal
     },
     rate: data.rate
    }
-    this.cartProducts.push(this.default_item) 
+    this.cartProducts['productList'].push(this.default_item) 
     sessionStorage.setItem("CartProducts", JSON.stringify(this.cartProducts))
     
   }
 
   removeItem(selectedItem){
-    let index = this.cartProducts.indexOf(selectedItem);
-    this.cartProducts.splice(index,1)
-    this.subtotalCalculator(this.cartProducts)
+    let index = this.cartProducts['productList'].indexOf(selectedItem);
+    this.cartProducts['productList'].splice(index,1)
+    this.subtotalCalculator(this.cartProducts['productList'])
   }
  
   checkOutItems(checkoutType){
    if(this.validateField()){
       sessionStorage.setItem("CartProducts", JSON.stringify(this.cartProducts))
-      sessionStorage.setItem("projectDetails",JSON.stringify(this.projectDetails))
       sessionStorage.setItem("checkoutType", checkoutType)
       this._router.navigate(["/checkout"])
    } else {

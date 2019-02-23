@@ -19,5 +19,8 @@ export class DashboardComponent implements OnInit {
   showOrders() {
     this.router.navigate(['orders'], { relativeTo: this.route });
   }
+  showOrderDetails() {
+    this.router.navigate(['detail'], { relativeTo: this.route });
+  }
 
 }
