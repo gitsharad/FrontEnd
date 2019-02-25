@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
     productName: prod.productName,
     qty:1,
     addon:'0',
-    total:prod.rate*1,
+    total: 500 * 0.10,
     otherInfo:[
       {"name":"",
       "words":500,

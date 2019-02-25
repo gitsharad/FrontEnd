@@ -17,10 +17,12 @@ public addonProducts
       "name": event.name,
       "value": event.value
     })
+    this.cartProducts['productList'][cartindex].total = parseFloat(this.cartProducts['productList'][cartindex].total) + parseFloat(event.value)
   } else {
     this.cartProducts['productList'][cartindex].otherInfo[oinfoIndex].addonInfo.splice(index,1)
+    this.cartProducts['productList'][cartindex].total = parseFloat(this.cartProducts['productList'][cartindex].total) - parseFloat(event.value)
   }
-    sessionStorage.setItem("CartProducts", JSON.stringify(this.cartProducts)) 
+     
   }
 
   ngOnInit() {
@@ -56,6 +58,7 @@ public addonProducts
   ]
   }
   launch() {
+    sessionStorage.setItem("CartProducts", JSON.stringify(this.cartProducts))
     this.router.navigate(['launch']);
   }
 

@@ -22,10 +22,10 @@ public subtotal
       productName: "",
       qty:1,
       addon:'0',
-      total:0,
+      total: 500 * 0.10,
       words:500,
       otherInfo:[
-        {"name":"",
+        {"name":"Title",
         "words":500,
         "addonInfo":[
          
@@ -70,9 +70,9 @@ public subtotal
     _id: data._id,
     productName: data.productName,
     qty:1,
-    total:data.rate * 1,
+    total: 500 * 0.10,
     otherInfo:[
-      {"name":"",
+      {"name":"Title",
        "words":500,
        "addonInfo":[
 

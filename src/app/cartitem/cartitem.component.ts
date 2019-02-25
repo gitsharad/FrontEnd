@@ -41,12 +41,13 @@ export class CartitemComponent implements OnInit {
   }
 
   onChange(productId){
-    let data = _.find(this.productData,{_id: productId})
+   /* let data = _.find(this.productData,{_id: productId})
     this.currentProductData.productName = data.productName
     this.currentProductData.rate = data.rate
     this.currentProductData.total = this.currentProductData.rate * this.currentProductData.qty
     this.subtotalCalc()
-    this.updateCartProducts()
+    this.updateCartProducts() */
+    this.wordscountchange()
   }
   
   updateCartProducts(){
@@ -56,9 +57,9 @@ export class CartitemComponent implements OnInit {
   wordscountchange (){
     let total = 0
     for(let i = 0 ; i < this.currentProductData.otherInfo.length; i++){
-      total = total + (this.currentProductData.otherInfo[i].addonqty * this.currentProductData.otherInfo[i].addonrate)
+      total = total + (this.currentProductData.otherInfo[i].words * 0.10)
     }
-    this.currentProductData.addontotal =  total
+    this.currentProductData.total =  total
   }
  
   addtitlelist(event){
@@ -68,8 +69,6 @@ export class CartitemComponent implements OnInit {
       this.currentProductData.total = this.currentProductData.rate * this.currentProductData.otherInfo.length
       this.subtotalCalc()
     } else {
-      this.currentProductData.total = this.currentProductData.rate * this.currentProductData.qty
-      this.subtotalCalc()
       if(this.currentProductData.otherInfo.length > event){
         let totalLength = this.currentProductData.otherInfo.length
         for(let k = event ; k<totalLength ; k++ ){
@@ -78,10 +77,13 @@ export class CartitemComponent implements OnInit {
       }
       
       for(let i = this.currentProductData.otherInfo.length; i< event ; i++){
-        this.currentProductData.otherInfo[i] =   {"name":"",
+        this.currentProductData.otherInfo[i] =   {"name":"Title",
         "words":500
        }
       }  
+      this.wordscountchange ()
+      this.subtotalCalc()
+      
     }
   }
  

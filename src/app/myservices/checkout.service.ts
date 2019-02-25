@@ -15,6 +15,4 @@ export class CheckoutService {
   payCheckout(){
     return this.http.post<any>(this._url,{})
   }
-
-
 }

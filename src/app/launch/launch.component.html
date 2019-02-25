@@ -19,7 +19,12 @@
           <strong>${{grandTotal}}</strong>
         </li>
       </ul>
-
+      <div class="expressPaypal">
+          <input type="hidden" [(ngModel)]="grandTotal" style="padding-bottom: 10px;">
+          <h2 *ngIf="paypalLoad">Paypal button is loading</h2>
+          <div id="paypal-checkout-btn"></div>
+      </div>
+      
     <!--  <form class="card p-2">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Promo code">
@@ -31,7 +36,7 @@
     </div>
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Billing address</h4>
-      <form class="needs-validation"  novalidate >
+    <!--  <form class="needs-validation"  novalidate > -->
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">First name</label>
@@ -173,8 +178,9 @@
           </div>
         </div>
         <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" (click)="onSubmit()">Continue to checkout</button>
-      </form>
+        <!--<button class="btn btn-primary btn-lg btn-block" (click)="onSubmit()">Continue to checkout</button>-->
+        
+     <!-- </form> -->
     </div>
   </div>
 
