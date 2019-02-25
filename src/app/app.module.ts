@@ -45,6 +45,7 @@ import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { OrderAddComponent } from './order-add/order-add.component';
 import { OrderEditComponent } from './order-edit/order-edit.component';
 import { LaunchComponent } from './launch/launch.component';
+import { CheckoutService } from './myservices/checkout.service';
 
 
 
@@ -102,7 +103,8 @@ import { LaunchComponent } from './launch/launch.component';
   },
     ToastrServiceService,
     ProductService,
-    CartitemloaderService
+    CartitemloaderService,
+    CheckoutService
   ],
   bootstrap: [AppComponent],
   entryComponents: [CartitemComponent]
