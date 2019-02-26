@@ -17,7 +17,7 @@
                       <th>productInfo</th><th style="text-align:center">OtherInfo
                         <table><tr><th>title</th><th>words</th></tr></table>
                       </th><th style="text-align:center">Add On Info <table><tr><th *ngFor="let addonProduct of addonProducts">{{addonProduct.name}}</th></tr></table></th>
-                      <th>Total USD</th>
+                      <th>Total {{this._config.configuration.currencyCode}}</th>
                   </tr>
                   <tr *ngFor="let cartproduct of cartProducts['productList']; let cartProdIndex=index">
                       <td>
@@ -50,12 +50,16 @@
                          
                       </td>
                       <td>
-                          <span class="text-muted">${{cartproduct.total}}</span>
+                          <span class="text-muted">{{this._config.configuration.currency}}{{cartproduct.total}}</span>
                       </td>
                   </tr>
                 </table>
           </div>
         </div>
-          <button name="checkout"  (click)="launch()" style="width:200px;height:50px;" class="btn btn-primary" value="launchcontest">Launch A Contest</button>
+        <div style="text-align:center">
+            <h2>PROJECT SUBTOTAL: {{this._config.configuration.currency}}{{subtotal}}</h2>
+            <button name="checkout"  (click)="launch()" style="width:200px;height:50px;" class="btn btn-primary" value="launchcontest">Launch A Contest</button>
+        </div>
+          
          
       </div>

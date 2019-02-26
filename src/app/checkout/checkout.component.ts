@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import * as _ from 'lodash';
+import { ConfigService } from '../config.service';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -9,7 +10,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class CheckoutComponent implements OnInit {
 public cartProducts
 public addonProducts
-  constructor(private router: Router , private route: ActivatedRoute) { }
+public subtotal
+  constructor(private router: Router , private route: ActivatedRoute, private _config: ConfigService) { }
  
   addAddon(event,index,cartindex,oinfoIndex){
    if(event.checked){
@@ -22,8 +24,16 @@ public addonProducts
     this.cartProducts['productList'][cartindex].otherInfo[oinfoIndex].addonInfo.splice(index,1)
     this.cartProducts['productList'][cartindex].total = parseFloat(this.cartProducts['productList'][cartindex].total) - parseFloat(event.value)
   }
-     
+     this.subtotalCalculator(this.cartProducts['productList'])
   }
+
+
+  subtotalCalculator(data){
+    if(!data){
+    data =  this.cartProducts['productList']
+    }
+    this.subtotal =_.sumBy(data, function(o) { return o.total; });
+ }
 
   ngOnInit() {
     this.cartProducts = JSON.parse(sessionStorage.getItem('CartProducts'))
@@ -56,7 +66,10 @@ public addonProducts
       "value":"70"
     }
   ]
+  this.subtotalCalculator(this.cartProducts['productList'])
   }
+
+  
   launch() {
     sessionStorage.setItem("CartProducts", JSON.stringify(this.cartProducts))
     this.router.navigate(['launch']);

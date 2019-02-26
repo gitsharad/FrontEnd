@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewChecked  } from '@angular/core';
 import * as _ from 'lodash';
 import { CheckoutService } from '../myservices/checkout.service';
 import { ToastrServiceService } from '../toastr-service.service';
+import { ConfigService } from '../config.service';
 declare let paypal: any;
 @Component({
   selector: 'app-launch',
@@ -11,6 +12,7 @@ declare let paypal: any;
 export class LaunchComponent implements AfterViewChecked , OnInit {
 public cartProducts
 public grandTotal
+public totalItem
 addScript: boolean = false;
 paypalLoad: boolean = true;
 
@@ -26,7 +28,7 @@ paypalConfig = {
     return actions.payment.create({
       payment: {
         transactions: [
-          { amount: { total: this.grandTotal, currency: 'USD' } }
+          { amount: { total: this.grandTotal, currency: this._config.configuration.currencyCode } }
         ]
       }
     });
@@ -56,15 +58,15 @@ addPaypalScript() {
     document.body.appendChild(scripttagElement);
   })
 }
-  constructor(private checkoutservice: CheckoutService, private toastr: ToastrServiceService) { }
+  constructor(private checkoutservice: CheckoutService, private toastr: ToastrServiceService, private _config: ConfigService) { }
 
   ngOnInit() {
     this.cartProducts =  JSON.parse(sessionStorage.getItem('CartProducts'))['productList']
+    this.totalItem = this.cartProducts.length
     this.grandTotal =_.sumBy(this.cartProducts, function(o) { return o.total; });
   }
 
   onSubmit(){
-    console.log('demo')
     this.checkoutservice.payCheckout().subscribe(
       res => { 
         this.toastr.Success('wow!','successfully Ordered') 

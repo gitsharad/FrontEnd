@@ -3,6 +3,8 @@ import { ProductService } from "../myservices/product.service";
 import { ToastrServiceService } from "../toastr-service.service";
 import { Router } from '@angular/router';
 import * as _ from 'lodash';
+import { ConfigService } from '../config.service';
+import { config } from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,7 +12,8 @@ import * as _ from 'lodash';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private productService: ProductService, public toastr: ToastrServiceService, private _router: Router) { }
+  constructor(private productService: ProductService, public toastr: ToastrServiceService, private _router: Router,
+    private _config: ConfigService) { }
   public productData
   public status
   public projectDetails = {}
@@ -28,19 +31,22 @@ export class HomeComponent implements OnInit {
       }
     )
   }
+
   onChangeCategory(event,prod,ordernow){
-    let prodAddElement = {_id: prod._id,
+
+    let prodAddElement = {
+    _id: prod._id,
     productName: prod.productName,
-    qty:1,
-    addon:'0',
-    total: 500 * 0.10,
-    otherInfo:[
-      {"name":"",
-      "words":500,
-      "addonInfo":[
-      ]
-      }
-    ],
+    qty:this._config.configuration.defaultProductValues.qty,
+      total: this._config.configuration.defaultProductValues.Words * this._config.configuration.defaultProductValues.perWordPrice,
+      otherInfo:[
+        {"name":this._config.configuration.defaultProductValues.titleName,
+        "words":this._config.configuration.defaultProductValues.Words,
+        "addonInfo":[
+         
+        ]
+        }
+      ],
     styleGuide:{
       "audiences":[],
       "industries":[],
@@ -51,8 +57,7 @@ export class HomeComponent implements OnInit {
       "thingsToMention":"",
       "additionalNotes":"",
       "styleBtnTxt":"Style"
-    },
-    rate: prod.rate
+    }
    }
         if(event){
           this.addtoCartProduct.push(prodAddElement)
@@ -74,8 +79,7 @@ export class HomeComponent implements OnInit {
   letStart(prod){
     sessionStorage.setItem( "CartProducts", JSON.stringify({'productList':this.addtoCartProduct,
        "projectName":"",
-       "projectDelivery":"7"
-     }))
+       "projectDelivery": this._config.configuration.defaultProductValues.projectDelivery     }))
     this._router.navigate(['/cart'])
   } 
 

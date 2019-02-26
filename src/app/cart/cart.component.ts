@@ -3,6 +3,7 @@ import { ProductService } from '../myservices/product.service';
 import { ToastrServiceService } from '../toastr-service.service';
 import * as _ from 'lodash';
 import { Router } from '@angular/router';
+import { ConfigService } from '../config.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -16,17 +17,16 @@ public default_item
 public addonList
 public subtotal 
  
-  constructor(public productService: ProductService, public toastr: ToastrServiceService , private _router: Router) {
+  constructor(public productService: ProductService, public toastr: ToastrServiceService , private _router: Router,
+     private _config: ConfigService) {
     let temp= {
       _id: 0,
       productName: "",
-      qty:1,
-      addon:'0',
-      total: 500 * 0.10,
-      words:500,
+      qty:this._config.configuration.defaultProductValues.qty,
+      total: this._config.configuration.defaultProductValues.Words * this._config.configuration.defaultProductValues.perWordPrice,
       otherInfo:[
-        {"name":"Title",
-        "words":500,
+        {"name":this._config.configuration.defaultProductValues.titleName,
+        "words":this._config.configuration.defaultProductValues.Words,
         "addonInfo":[
          
         ]
@@ -42,8 +42,7 @@ public subtotal
         "thingsToMention":"",
         "additionalNotes":"",
         "styleBtnTxt":"Style"
-      },
-      rate: 0
+      }
      }
      this.default_item = temp
   }
@@ -69,14 +68,14 @@ public subtotal
     this.default_item = {
     _id: data._id,
     productName: data.productName,
-    qty:1,
-    total: 500 * 0.10,
+    qty:this._config.configuration.defaultProductValues.qty,
+    total: this._config.configuration.defaultProductValues.Words * this._config.configuration.defaultProductValues.perWordPrice,
     otherInfo:[
-      {"name":"Title",
-       "words":500,
-       "addonInfo":[
-
-       ]
+      {"name":this._config.configuration.defaultProductValues.titleName,
+      "words":this._config.configuration.defaultProductValues.Words,
+      "addonInfo":[
+       
+      ]
       }
     ],
     styleGuide:{
@@ -89,10 +88,10 @@ public subtotal
       "thingsToMention":"",
       "additionalNotes":"",
       "styleBtnTxt":"Style"
-    },
-    rate: data.rate
+    }
    }
     this.cartProducts['productList'].push(this.default_item) 
+    this.subtotalCalculator(this.cartProducts['productList'])
     sessionStorage.setItem("CartProducts", JSON.stringify(this.cartProducts))
     
   }

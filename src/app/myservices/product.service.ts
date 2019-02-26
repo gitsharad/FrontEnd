@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from "@angular/router";
+import { ConfigService } from '../config.service';
 
 @Injectable()
 export class ProductService {
-  private _host = "http://ec2-52-15-233-183.us-east-2.compute.amazonaws.com:3000/api/"
- // private _host = "http://globalcontentwriters.com/api/"
- // private _host = "http://localhost:3000/api/"
+  private _host = this._config.configuration.host
   private _productUrl = this._host + "products"
 
-  constructor(private http: HttpClient,private _router: Router) { }
+  constructor(private http: HttpClient,private _router: Router, private _config: ConfigService) { }
   getProducts(type){
     const params = new HttpParams()
           .set('type', type)

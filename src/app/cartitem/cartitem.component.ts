@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as _ from 'lodash';
 import { ToastrServiceService } from '../toastr-service.service';
+import { ConfigService } from '../config.service';
 @Component({
   selector: '.app-cartitem',
   templateUrl: './cartitem.component.html',
@@ -17,7 +18,7 @@ export class CartitemComponent implements OnInit {
  public audienceList
  @Output() itemToRemove: EventEmitter<string>= new EventEmitter()
  @Output() subtotalCalculator: EventEmitter<object>= new EventEmitter()
-  constructor(public toastr: ToastrServiceService) { 
+  constructor(public toastr: ToastrServiceService, private _config: ConfigService) { 
     this.cartProducts =  JSON.parse(sessionStorage.getItem('CartProducts'))['productList']
     this.audienceList = ["audience1","audience2","audience3"]
   }
@@ -28,7 +29,7 @@ export class CartitemComponent implements OnInit {
   ngOnInit(){
     this.currentProductData = this.selectedProduct
     this.numbers = Array(20).fill(0).map((x,i)=>i)
-    this.wordList = Array(6).fill(0).map((x,i) => i*500)
+    this.wordList = Array(6).fill(0).map((x,i) => i*this._config.configuration.defaultProductValues.Words)
   }
 
   removeItem(item){
@@ -57,7 +58,7 @@ export class CartitemComponent implements OnInit {
   wordscountchange (){
     let total = 0
     for(let i = 0 ; i < this.currentProductData.otherInfo.length; i++){
-      total = total + (this.currentProductData.otherInfo[i].words * 0.10)
+      total = total + (this.currentProductData.otherInfo[i].words * this._config.configuration.defaultProductValues.perWordPrice)
     }
     this.currentProductData.total =  total
   }
@@ -77,8 +78,8 @@ export class CartitemComponent implements OnInit {
       }
       
       for(let i = this.currentProductData.otherInfo.length; i< event ; i++){
-        this.currentProductData.otherInfo[i] =   {"name":"Title",
-        "words":500
+        this.currentProductData.otherInfo[i] =   {"name":this._config.configuration.defaultProductValues.titleName,
+        "words":this._config.configuration.defaultProductValues.Words
        }
       }  
       this.wordscountchange ()

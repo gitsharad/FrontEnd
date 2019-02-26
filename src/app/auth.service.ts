@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from "@angular/router";
+import { ConfigService } from './config.service';
 
 @Injectable()
 export class AuthService {
-    private _host = "http://ec2-52-15-233-183.us-east-2.compute.amazonaws.com:3000/api/"
-  // private _host = "http://globalcontentwriters.com/api/"
- // private _host = "http://localhost:3000/api/"
+
+  constructor(private http: HttpClient,private _router: Router, private _config: ConfigService) { }
+  private _host = this._config.configuration.host
   private _registerUrl = this._host + "register"
   private _loginUrl = this._host + "login"
   private _profileUrl = this._host + "profile"
   private _changePassUrl = this._host + "changepassword"
-  constructor(private http: HttpClient,private _router: Router) { }
+  
    
   registerUser(user){
    return this.http.post<any>(this._registerUrl, user)
