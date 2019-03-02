@@ -17,6 +17,7 @@ import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { OrderAddComponent } from './order-add/order-add.component';
 import { OrderEditComponent } from './order-edit/order-edit.component';
 import { LaunchComponent } from './launch/launch.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'forgotpassword',
+    component: ForgotpasswordComponent
   },
   {
     path: 'register',

@@ -12,6 +12,8 @@ export class AuthService {
   private _loginUrl = this._host + "login"
   private _profileUrl = this._host + "profile"
   private _changePassUrl = this._host + "changepassword"
+  private _forgotPass = this._host + "forgot"
+  private _resetPassUrl = this._host + "reset"
   
    
   registerUser(user){
@@ -29,9 +31,17 @@ export class AuthService {
     return this.http.post<any>(this._profileUrl, profileData)
    }
 
+  forgotPassword(email){
+    return this.http.post<any>(this._forgotPass+"/"+email, {})
+   }
+  
+   resetPassword(token){
+    return this.http.post<any>(this._resetPassUrl+"/"+token, {})
+  }
+
   loginUser(user){
     return this.http.post<any>(this._loginUrl, user)
-   }
+  }
 
   loggedIn(){
     return !!localStorage.getItem('token')

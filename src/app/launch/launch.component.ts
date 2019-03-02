@@ -13,6 +13,7 @@ export class LaunchComponent implements AfterViewChecked , OnInit {
 public cartProducts
 public grandTotal
 public totalItem
+public isLogin
 addScript: boolean = false;
 paypalLoad: boolean = true;
 
@@ -75,6 +76,7 @@ addPaypalScript() {
         this.toastr.Error(err.error.ErrorCode,err.error.ErrorMsg)
       }
     )
+    this.isLogin = localStorage.getItem('email') ? true : false
   }
 
 }

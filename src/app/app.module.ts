@@ -48,6 +48,7 @@ import { LaunchComponent } from './launch/launch.component';
 import { CheckoutService } from './myservices/checkout.service';
 import { HelperService } from './myservices/helper.service';
 import { ConfigService } from './config.service';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 
 
@@ -77,7 +78,8 @@ import { ConfigService } from './config.service';
     OrderDetailComponent,
     OrderAddComponent,
     OrderEditComponent,
-    LaunchComponent
+    LaunchComponent,
+    ForgotpasswordComponent
 
 
   ],
