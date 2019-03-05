@@ -49,8 +49,8 @@ import { CheckoutService } from './myservices/checkout.service';
 import { HelperService } from './myservices/helper.service';
 import { ConfigService } from './config.service';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
-
-
+import { NgxDataTableModule } from "ngx-nested-data-table";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 
 
@@ -97,7 +97,9 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    BrowserAnimationsModule,
+    NgxDataTableModule
 
   ],
   providers: [AuthService, AuthGuard, {

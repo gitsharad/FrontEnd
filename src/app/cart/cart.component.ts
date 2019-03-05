@@ -90,6 +90,10 @@ public subtotal
       "styleBtnTxt":"Style"
     }
    }
+   
+   if(!this.cartProducts['productList']){
+    this.cartProducts['productList'] = []
+   }
     this.cartProducts['productList'].push(this.default_item) 
     this.subtotalCalculator(this.cartProducts['productList'])
     sessionStorage.setItem("CartProducts", JSON.stringify(this.cartProducts))
@@ -114,6 +118,13 @@ public subtotal
   }
 
   validateField(){
+    if(!this.cartProducts['projectName']){
+      this.toastr.Error("OOPs! Project Name is required Field!",'')
+      return false
+    } else if(!this.cartProducts['projectDelivery']){
+      this.toastr.Error("OOPs! Project Delivery is required Field!",'')
+      return false
+    }
     return true
   }
 

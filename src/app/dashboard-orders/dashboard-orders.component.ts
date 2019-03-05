@@ -23,11 +23,14 @@ import * as _ from 'lodash';
 export class DashboardOrdersComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['productName', 'qty', 'rate', 'status', 'name', 'words', 'orderId'];
+ // displayedColumns: string[] = ['productName', 'qty','price','otherInfo'];
   data: Order[] = [];
+ //   data: any[] = []
   //data: Array<any> = []
   isLoadingResults = true;
-
+  public menuList = {
+    
+  }
 
   constructor(private api: OrdersService) { }
 
@@ -35,6 +38,7 @@ export class DashboardOrdersComponent implements OnInit {
     this.api.getOrders(localStorage.getItem('email'))
       .subscribe(res => {
         this.data = res;
+        console.log('res',res)
         this.isLoadingResults = false;
       }, err => {
         console.log(err);

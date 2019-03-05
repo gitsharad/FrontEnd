@@ -1,14 +1,15 @@
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">GCW <small style="color:chocolate">Dashboard</small></a>
   <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
   <ul class="navbar-nav px-3">
-    <li class="nav-item text-nowrap">
-      <a class="nav-link" href="#">Sign out</a>
+   
+      <li class="nav-item" *ngIf = "_authService.loggedIn()">
+        <a style = "cursor:pointer" class="nav-link" (click)= "_authService.logoutUser()" >Sign Out<span class="sr-only"></span></a>
     </li>
   </ul>
 </nav>
 
-<div class="container-fluid">
+<div class="container-fluid dashboard">
   <div class="row">
     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
       <div class="sidebar-sticky">
@@ -20,33 +21,48 @@
             </a>
           </li> -->
           <li class="nav-item">
-            <a class="nav-link" (click)="showOrders()">
-              <!-- <span data-feather="file"></span> -->
+            <a class="nav-link">
+                <i class="far fa-file"></i>
               Orders
             </a>
+            <ul>
+              <li> <a (click)="showOrders()" routerLinkActive="active">Ordered</a></li>
+              <li>In Progress</li>
+              <li>Completed</li>
+          </ul>
 
           </li>
           <li class="nav-item">
             <a class="nav-link" (click)="showProducts()">
-              <span data-feather="shopping-cart"></span>
+                <i class="fas fa-shopping-cart"></i>
               Products
             </a>
+            <ul>
+                <li>Addon </li>
+                <li>Regular</li>
+            </ul>
           </li>
           <li class="nav-item">
             <a class="nav-link" (click)="showCustomers()">
-              <span data-feather="users"></span>
+             <i class="fas fa-users"></i>
               Customers
             </a>
+            <ul>
+                <li>List</li>
+            </ul>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" (click)="showOrderDetails()">
-              <!-- <span data-feather="file"></span> -->
-              Details
-            </a>
-
-          </li>
+              <a class="nav-link" (click)="showCustomers()">
+                <i class="far fa-file"></i>
+                Categories
+              </a>
+              <ul>
+                  <li>List</li>
+              </ul>
+            </li>
+          
         </ul>
-
 
       </div>
     </nav>

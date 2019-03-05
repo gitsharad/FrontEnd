@@ -4,6 +4,9 @@
 
 
   /* Structure */
+.projectUl{
+ list-style-type: none;
+  }
 .example-container {
   position: relative;
   padding: 5px;
