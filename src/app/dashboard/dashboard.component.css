@@ -98,4 +98,11 @@
   .sidebar .active{
     color:green;
   }
-  
+
+  .dashboard .sidebar ul ul li a{
+    cursor:pointer !important;
+  }
+
+  .dashboard .sidebar ul ul li:hover{
+   background-color:green;
+  }

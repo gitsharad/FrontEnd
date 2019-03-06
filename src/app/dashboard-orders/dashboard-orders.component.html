@@ -1,1 +1,14 @@
-<ngx-data-table [data]="data"></ngx-data-table>
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let project of data">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+            {{project.projectName}}
+        </mat-panel-title>
+        <mat-panel-description>
+          Delivery in   {{project.projectDelivery}} Days
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      {{project.productList | json}}
+      
+    </mat-expansion-panel>
+  </mat-accordion>

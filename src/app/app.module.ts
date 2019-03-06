@@ -51,6 +51,7 @@ import { ConfigService } from './config.service';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { NgxDataTableModule } from "ngx-nested-data-table";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 
@@ -99,7 +100,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     AppRoutingModule,
     NgbModule.forRoot(),
     BrowserAnimationsModule,
-    NgxDataTableModule
+    NgxDataTableModule,
+    MatExpansionModule
 
   ],
   providers: [AuthService, AuthGuard, {
