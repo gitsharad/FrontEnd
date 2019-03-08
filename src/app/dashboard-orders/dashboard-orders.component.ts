@@ -3,15 +3,12 @@ import { OrdersService } from '../orders.service';
 import { Order } from '../order';
 import * as _ from 'lodash';
 
-// export interface PeriodicElement {
-//   name: string;
-//   position: number;
-//   weight: number;
-//   symbol: string;
-//   symbol1: string;
-//   symbol2: string;
-// }
-
+export interface Tile {
+  color: string;
+  cols: number;
+  rows: number;
+  text: string;
+}
 
 
 
@@ -25,6 +22,7 @@ export class DashboardOrdersComponent implements OnInit {
 
   displayedColumns: string[] = ['productName', 'qty', 'otherInfo'];
   data: Order[] = [];
+  
   //data: Array<any> = []
   isLoadingResults = true;
   public menuList = {
@@ -43,5 +41,6 @@ export class DashboardOrdersComponent implements OnInit {
         this.isLoadingResults = false;
       });
   }
+  
 
 }

@@ -52,7 +52,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { NgxDataTableModule } from "ngx-nested-data-table";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {MatExpansionModule} from '@angular/material/expansion';
-
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 @NgModule({
@@ -101,7 +101,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     NgbModule.forRoot(),
     BrowserAnimationsModule,
     NgxDataTableModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatBadgeModule
 
   ],
   providers: [AuthService, AuthGuard, {
