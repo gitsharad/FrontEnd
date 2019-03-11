@@ -2,10 +2,22 @@
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">GCW <small style="color:chocolate">Dashboard</small></a>
   <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
   <ul class="navbar-nav px-3">
-   
-      <li class="nav-item" *ngIf = "_authService.loggedIn()">
-        <a style = "cursor:pointer" class="nav-link" (click)= "_authService.logoutUser()" >Sign Out<span class="sr-only"></span></a>
-    </li>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item  class="nav-link" (click)= "_authService.logoutUser()">
+              <mat-icon><i class="fas fa-sign-in-alt"></i></mat-icon>
+            <span>logout</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon ><i class="fas fa-wallet"></i></mat-icon>
+            <span>wallet</span>
+          </button>
+        </mat-menu>
+     <!-- <li class="nav-item" *ngIf = "_authService.loggedIn()">
+        <a style = "cursor:pointer" class="nav-link" (click)= "_authService.logoutUser()" ><span class="sr-only"></span></a>
+    </li> -->
   </ul>
 </nav>
 

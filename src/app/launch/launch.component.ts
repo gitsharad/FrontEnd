@@ -14,6 +14,7 @@ public cartProducts
 public grandTotal
 public totalItem
 public isLogin
+public aboutCustomer
 addScript: boolean = false;
 paypalLoad: boolean = true;
 
@@ -65,18 +66,19 @@ addPaypalScript() {
     this.cartProducts =  JSON.parse(sessionStorage.getItem('CartProducts'))['productList']
     this.totalItem = this.cartProducts.length
     this.grandTotal =_.sumBy(this.cartProducts, function(o) { return o.total; });
+    this.isLogin = localStorage.getItem('email') ? true : false;
   }
 
-  onSubmit(){
-    this.checkoutservice.payCheckout().subscribe(
+  onSubmit(checkoutForm){
+    console.log('checkoutform',checkoutForm.form)
+    /*
+    this.checkoutservice.payCheckout(this.cartProducts).subscribe(
       res => { 
-        this.toastr.Success('wow!','successfully Ordered') 
+       // this.toastr.Success('wow!','successfully Ordered') 
      },
       err => {
         this.toastr.Error(err.error.ErrorCode,err.error.ErrorMsg)
       }
-    )
-    this.isLogin = localStorage.getItem('email') ? true : false
+    ) */
   }
-
 }

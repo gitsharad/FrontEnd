@@ -1,3 +1,7 @@
 .expressPaypal{
     text-align: center;
 }
+.invalid-feedback-new{
+    color:red !important;
+    font-size: 11px !important;
+}

@@ -10,39 +10,36 @@
       </mat-expansion-panel-header>
      
       <div class="row">
-        <div class="col">
-            <div class="row">
        <div class="col">
           <mat-card *ngFor="let product of project.productList">
               <p>
                   <span matBadge="{{product.qty}}" matBadgeOverlap="false">{{product.productName}}</span>
                 </p>
                 
-                <ul>
-                    <li  *ngFor="let otherInfo of product.otherInfo">
+               
+                    <mat-card  *ngFor="let otherInfo of product.otherInfo">
                         {{otherInfo.name}} 
                         
                         <ul>
+                         <span style="border-bottom:1px solid blue; font-weight: bold">Addons</span>
                             <li *ngFor="let addonInfo of otherInfo.addonInfo">
                               {{addonInfo.name}} 
                             </li>
                           </ul>
 
-                    </li>
-                </ul>
+                        </mat-card>
+               
           </mat-card>
           
       </div>
         <div class="col">
             <div class="col">
                 <mat-card *ngFor="let product of project.productList">
-                  <p>Sample Coated</p> 
+                  <p>Sample Coated for {{product.productName}}</p> 
                    <small>No Sample Coted </small>
                 </mat-card>
             </div>
         </div>
-        </div>
-      </div>
       </div>
     </mat-expansion-panel>
   </mat-accordion>

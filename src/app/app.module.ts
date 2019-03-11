@@ -53,6 +53,7 @@ import { NgxDataTableModule } from "ngx-nested-data-table";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
@@ -102,7 +103,9 @@ import {MatBadgeModule} from '@angular/material/badge';
     BrowserAnimationsModule,
     NgxDataTableModule,
     MatExpansionModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatButtonModule,
+    MatMenuModule
 
   ],
   providers: [AuthService, AuthGuard, {
