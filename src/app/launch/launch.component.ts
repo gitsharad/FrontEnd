@@ -70,15 +70,14 @@ addPaypalScript() {
   }
 
   onSubmit(checkoutForm){
-    console.log('checkoutform',checkoutForm.form)
-    /*
+    this.cartProducts['billingInfo'] = checkoutForm.form.value;
     this.checkoutservice.payCheckout(this.cartProducts).subscribe(
       res => { 
-       // this.toastr.Success('wow!','successfully Ordered') 
+        this.toastr.Success('wow!','successfully Ordered') 
      },
       err => {
         this.toastr.Error(err.error.ErrorCode,err.error.ErrorMsg)
       }
-    ) */
+    )
   }
 }

@@ -8,7 +8,7 @@ import { ConfigService } from '../config.service';
 })
 export class CheckoutService {
   private _host = this._config.configuration.host
-  private _url = this._host + "setorder"
+  private _url = this._host + "addorder"
 
   constructor(private _router: Router, private http: HttpClient, private _config: ConfigService) { }
   payCheckout(orderDetails){

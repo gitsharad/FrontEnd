@@ -115,15 +115,15 @@
 
         <div class="d-block my-3">
           <div class="custom-control custom-radio">
-            <input id="credit" name="paymentMethod"  ngModel type="radio" class="custom-control-input" checked required>
+            <input id="credit" name="paymentMethod" value="credit" ngModel  #paymentMethod="ngModel" type="radio" class="custom-control-input" checked required>
             <label class="custom-control-label" for="credit">Credit card</label>
           </div>
           <div class="custom-control custom-radio">
-            <input id="debit" name="paymentMethod"  ngModel type="radio" class="custom-control-input" required>
-            <label class="custom-control-label" for="debit">Debit card</label>
+            <input id="debit" name="paymentMethod" value="debit" ngModel #paymentMethod="ngModel" type="radio" class="custom-control-input" required>
+            <label class="custom-control-label"  for="debit">Debit card</label>
           </div>
           <div class="custom-control custom-radio">
-            <input id="paypal" name="paymentMethod"  ngModel type="radio" class="custom-control-input" required>
+            <input id="paypal" name="paymentMethod" value="paypal" ngModel #paymentMethod="ngModel" type="radio" class="custom-control-input" required>
             <label class="custom-control-label" for="paypal">PayPal</label>
           </div>
         </div>
@@ -161,8 +161,7 @@
           </div>
         </div>
         <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" [disabled]="!checkoutForm.valid" type="submit">Continue to checkout</button>
-        {{checkoutForm.valid}}
+        <button class="btn btn-primary btn-lg btn-block" [disabled]="!checkoutForm.valid"  type="submit">Continue to checkout</button>
      </form> 
     </div>
   </div>
