@@ -38,29 +38,29 @@
               Orders
             </a>
             <ul>
-              <li> <a (click)="showOrders()" routerLinkActive="active">Ordered</a></li>
-              <li>In Progress</li>
-              <li>Completed</li>
+              <li> <a (click)="showOrders('ordered')" routerLinkActive="active">Ordered</a></li>
+              <li> <a (click)="showOrders('inprogress')" routerLinkActive="active">In Progress </a></li>
+              <li> <a (click)="showOrders('completed')" routerLinkActive="active">Completed</a></li>
           </ul>
 
           </li>
           <li class="nav-item">
-            <a class="nav-link" (click)="showProducts()">
+            <a class="nav-link" >
                 <i class="fas fa-shopping-cart"></i>
               Products
             </a>
             <ul>
-                <li>Addon </li>
-                <li>Regular</li>
+                <li><a routerLinkActive="active" (click)="showProducts('addon')">Addon </a></li>
+                <li><a routerLinkActive="active" (click)="showProducts('regular')">Regular</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" (click)="showCustomers()">
+            <a class="nav-link">
              <i class="fas fa-users"></i>
               Customers
             </a>
             <ul>
-                <li>List</li>
+                <li> <a routerLinkActive="active" (click)="showCustomers()">List </a></li>
             </ul>
           </li>
 

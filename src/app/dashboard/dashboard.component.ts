@@ -9,7 +9,7 @@ import { AuthService } from '../auth.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute, private _authService: AuthService) { }
+  constructor(private router: Router, private route: ActivatedRoute, public _authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -17,11 +17,15 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['products'], { relativeTo: this.route });
   }
 
-  showOrders() {
-    this.router.navigate(['orders'], { relativeTo: this.route });
+  showOrders(orderType) {
+    this.router.navigate(['orders',orderType], { relativeTo: this.route });
   }
   showOrderDetails() {
     this.router.navigate(['detail'], { relativeTo: this.route });
+  }
+
+  showCustomers() {
+    // this.router.navigate(['orders'], { relativeTo: this.route });
   }
 
 }

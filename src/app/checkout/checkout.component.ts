@@ -11,7 +11,7 @@ export class CheckoutComponent implements OnInit {
 public cartProducts
 public addonProducts
 public subtotal
-  constructor(private router: Router , private route: ActivatedRoute, private _config: ConfigService) { }
+  constructor(private router: Router , private route: ActivatedRoute, public _config: ConfigService) { }
  
   addAddon(event,index,cartindex,oinfoIndex){
    if(event.checked){

@@ -14,14 +14,15 @@ export class ProfileComponent implements OnInit {
   profileData = {
     email: "",
     website:"",
-    companyname:"",
-    fname:"",
-    lname:"",
+    companyName:"",
+    firstName:"",
+    lastName:"",
     phone:"",
     languages:[],
     yearofexp:"",
     highestdegree:"",
-    categories: []
+    categories: [],
+    userType:""
   }
   changePassData = {
     newPassword: "",

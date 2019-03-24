@@ -17,7 +17,11 @@ export class OrderDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.api.getOrders(localStorage.getItem('email'))
+    let parameters = {
+      'status': status,
+      'email': localStorage.getItem('email')
+    }
+    this.api.getOrders(parameters)
       .subscribe(res => {
          console.log("res", res);
          this.order = res[0]

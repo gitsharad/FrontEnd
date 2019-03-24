@@ -1,18 +1,21 @@
+
 <mat-accordion>
     <mat-expansion-panel *ngFor="let project of data">
+
       <mat-expansion-panel-header>
         <mat-panel-title>
-            {{project.projectName}}
+            {{project.projectName}} 
         </mat-panel-title>
         <mat-panel-description>
           Delivery in   {{project.projectDelivery}} Days
         </mat-panel-description>
       </mat-expansion-panel-header>
-     
       <div class="row">
        <div class="col">
+          <div class="row">
+              <div class="col">
           <mat-card *ngFor="let product of project.productList">
-              <p>
+                <p>
                   <span matBadge="{{product.qty}}" matBadgeOverlap="false">{{product.productName}}</span>
                 </p>
                 
@@ -30,16 +33,74 @@
                         </mat-card>
                
           </mat-card>
+          </div>
+          </div>
           
       </div>
         <div class="col">
             <div class="col">
-                <mat-card *ngFor="let product of project.productList">
-                  <p>Sample Coated for {{product.productName}}</p> 
-                   <small>No Sample Coted </small>
+                <mat-card  *ngIf="userType !== 'writer'">
+                  <p>Sample Coated</p> 
+                  <mat-expansion-panel *ngFor="let writersSample of SampleCoated">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            By : {{writersSample.writer}}  <small *ngIf="writersSample.accept"  class="fas fa-check" style="float:right;color:chocolate;margin-left:10px"> Accepted</small>
+                        </mat-panel-title>
+                     
+                      </mat-expansion-panel-header>
+                      <div *ngFor="let sample of writersSample.samples">
+                          <mat-panel-title>
+                             <h6>{{sample.category}} <small>{{sample.subCategory}}</small></h6> 
+                          </mat-panel-title>
+                          <mat-panel-description>
+                              <p>
+                                   {{sample.content}}
+                             </p>
+                                 
+                          </mat-panel-description>
+                      </div>
+                      <mat-panel-title>
+                          <button *ngIf="!writersSample.accept" mat-button (click)="acceptSample(writersSample.writer)" color="primary">Accept</button>
+                      </mat-panel-title>
+                  </mat-expansion-panel>
+
+                   <small *ngIf="!SampleCoated">No Sample Coted </small>
+                </mat-card>
+                <mat-card  *ngIf="userType === 'writer'">
+                  <h6>Coted Samples</h6>
+                <div *ngIf="!SampleCoated; else addsample" >
+                  <div *ngFor="let writersSample of SampleCoated">
+                      <div *ngFor="let sample of writersSample.samples">
+                          <mat-panel-title>
+                             <h6>{{sample.category}} <small>{{sample.subCategory}}</small></h6> 
+                          </mat-panel-title>
+                          <mat-form-field class="example-full-width">
+                            <textarea matInput  name="content" id="" >{{sample.content}}</textarea>
+                          </mat-form-field>
+                      </div>
+                       <button *ngIf="!writersSample.accept" mat-button (click)="updateSample()" color="primary">Send Sample</button>
+                  </div>
+                </div>
+
+                  <ng-template #addsample>
+                      <div *ngFor="let product of project.productList">
+                        <div *ngFor="let otherInfo of product.otherInfo">
+                              <mat-panel-title>
+                                 <h6>{{product.productName}} <small>{{otherInfo.name}}</small></h6> 
+                              </mat-panel-title>
+                                      <mat-form-field class="example-full-width">
+                                          <textarea matInput  placeholder="Enter Sample Content" name="content" id="" ></textarea>
+                              </mat-form-field>
+                        </div>
+                           
+                      </div>
+                      <button  mat-button (click)="sendSample()" color="primary">Update Sample</button>
+                  </ng-template>
+                  
                 </mat-card>
             </div>
         </div>
       </div>
     </mat-expansion-panel>
   </mat-accordion>
+  <div class="mb-3"></div>

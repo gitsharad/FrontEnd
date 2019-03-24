@@ -104,7 +104,7 @@
   }
 
   .dashboard .sidebar ul ul li:hover{
-   background-color:green;
+   font-weight: bold;
   }
 
   .dashboardNav li{

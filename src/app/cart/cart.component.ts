@@ -11,14 +11,18 @@ import { ConfigService } from '../config.service';
 })
 export class CartComponent implements OnInit {
 
-public cartProducts  = {}
+public cartProducts  = {
+  productList:[],
+  projectName:"",
+  projectDelivery:""
+}
 public productData 
 public default_item
 public addonList
 public subtotal 
  
   constructor(public productService: ProductService, public toastr: ToastrServiceService , private _router: Router,
-     private _config: ConfigService) {
+     public _config: ConfigService) {
     let temp= {
       _id: 0,
       productName: "",
@@ -114,7 +118,6 @@ public subtotal
    } else {
      return 
    } 
-   
   }
 
   validateField(){

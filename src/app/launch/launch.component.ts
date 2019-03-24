@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import { CheckoutService } from '../myservices/checkout.service';
 import { ToastrServiceService } from '../toastr-service.service';
 import { ConfigService } from '../config.service';
+import { AuthService } from '../auth.service';
 declare let paypal: any;
 @Component({
   selector: 'app-launch',
@@ -15,6 +16,7 @@ public grandTotal
 public totalItem
 public isLogin
 public aboutCustomer
+public profileData
 addScript: boolean = false;
 paypalLoad: boolean = true;
 
@@ -60,24 +62,40 @@ addPaypalScript() {
     document.body.appendChild(scripttagElement);
   })
 }
-  constructor(private checkoutservice: CheckoutService, private toastr: ToastrServiceService, private _config: ConfigService) { }
+  constructor(private checkoutservice: CheckoutService, private authService: AuthService ,private toastr: ToastrServiceService, public _config: ConfigService) { }
 
   ngOnInit() {
-    this.cartProducts =  JSON.parse(sessionStorage.getItem('CartProducts'))['productList']
+    this.cartProducts=  JSON.parse(sessionStorage.getItem('CartProducts'))
     this.totalItem = this.cartProducts.length
-    this.grandTotal =_.sumBy(this.cartProducts, function(o) { return o.total; });
+    this.grandTotal =_.sumBy(this.cartProducts['productList'], function(o) { return o.total; });
     this.isLogin = localStorage.getItem('email') ? true : false;
+    if(this.isLogin){
+        this.getProfileData(localStorage.getItem('email'))
+    }
   }
-
+  
   onSubmit(checkoutForm){
     this.cartProducts['billingInfo'] = checkoutForm.form.value;
-    this.checkoutservice.payCheckout(this.cartProducts).subscribe(
+    this.checkoutservice.payCheckout(this.cartProducts,localStorage.getItem('email')).subscribe(
       res => { 
         this.toastr.Success('wow!','successfully Ordered') 
      },
       err => {
+        console.log('err',err)
         this.toastr.Error(err.error.ErrorCode,err.error.ErrorMsg)
       }
     )
   }
+getProfileData(email){
+    this.authService.getProfile(email).subscribe(
+      res => { 
+       this.profileData = res
+     },
+      err => {
+        console.log('err',err)
+        this.toastr.Error(err.error.ErrorCode,err.error.ErrorMsg)
+      }
+    )
+
+}
 }

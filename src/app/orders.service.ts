@@ -3,19 +3,20 @@ import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Order } from './order';
+import { ConfigService } from './config.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-const apiUrl = "http://ec2-52-15-233-183.us-east-2.compute.amazonaws.com:3000/api/getorders";
-
 @Injectable({
   providedIn: 'root'
 })
 export class OrdersService {
+  private _host = this.config.configuration.host
+  private _getOrderUrl = this._host + "getorders"
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public config: ConfigService) { }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
@@ -27,9 +28,13 @@ export class OrdersService {
     };
   }
 
-  getOrders(email): Observable<Order[]> {
-    const headers = new HttpHeaders().set("email", email);
-    return this.http.get<Order[]>(apiUrl, { headers })
+  getOrders(data): Observable<Order[]> {
+    let httpParams = new HttpParams()
+      Object.keys(data).forEach(function (key) {
+        httpParams = httpParams.append(key, data[key]);
+      });
+
+    return this.http.get<Order[]>(this._getOrderUrl, { params: httpParams })
       .pipe(
         tap(heroes => console.log('fetched orders')),
         catchError(this.handleError('getOrders', []))

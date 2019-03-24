@@ -53,12 +53,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'orders', component: DashboardOrdersComponent,
-        children: [
+        path: 'orders/:status', component: DashboardOrdersComponent,
+        /*children: [
           { path: 'detail', component: OrderDetailComponent, data: { title: 'Order Details' } },
           { path: 'add', component: OrderAddComponent, data: { title: 'Add Order' } },
           { path: 'edit/:id', component: OrderEditComponent, data: { title: 'Edit Order' } },
-        ]
+        ] */
       },
       { path: 'products', component: DashboardProductsComponent }
     ]

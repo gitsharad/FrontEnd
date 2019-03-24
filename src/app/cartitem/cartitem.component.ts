@@ -18,7 +18,7 @@ export class CartitemComponent implements OnInit {
  public audienceList
  @Output() itemToRemove: EventEmitter<string>= new EventEmitter()
  @Output() subtotalCalculator: EventEmitter<object>= new EventEmitter()
-  constructor(public toastr: ToastrServiceService, private _config: ConfigService) { 
+  constructor(public toastr: ToastrServiceService, public _config: ConfigService) { 
     this.cartProducts =  JSON.parse(sessionStorage.getItem('CartProducts'))['productList']
     this.audienceList = ["audience1","audience2","audience3"]
   }
