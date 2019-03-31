@@ -12,14 +12,13 @@ import { ActivatedRoute } from "@angular/router";
 export class DashboardOrdersComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['productName', 'qty', 'otherInfo'];
   data: Order[] = [];
   public userType
   
   //data: Array<any> = []
   isLoadingResults = true;
   public orderStatus
-  public SampleCoated = [
+  public SampleCoated = 
     {
       "writer":"SSSPAWAR25@GMAIL.COM",
       "orderId":"66@Wjb8bOg",
@@ -36,7 +35,6 @@ export class DashboardOrdersComponent implements OnInit {
       }],
       "date":"25 March 2019"
     }
-  ]
   public menuList = {
     
   }
@@ -64,13 +62,13 @@ export class DashboardOrdersComponent implements OnInit {
   }
 
  acceptSample(id){
-    for (let sample of this.SampleCoated) {
+   /* for (let sample of this.SampleCoated) {
       if(sample['writer'] === id){
         sample['accept'] = true
       } else{
         sample['accept'] = false
       }
-  }  
+  }   */
 }
 
 // Add Sample

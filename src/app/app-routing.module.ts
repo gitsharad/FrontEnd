@@ -60,7 +60,7 @@ const routes: Routes = [
           { path: 'edit/:id', component: OrderEditComponent, data: { title: 'Edit Order' } },
         ] */
       },
-      { path: 'products', component: DashboardProductsComponent }
+      { path: 'products/:type', component: DashboardProductsComponent }
     ]
   },
   {

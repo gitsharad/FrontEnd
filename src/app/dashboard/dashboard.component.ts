@@ -13,8 +13,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
   }
-  showProducts() {
-    this.router.navigate(['products'], { relativeTo: this.route });
+  showProducts(type) {
+    this.router.navigate(['products',type],{ relativeTo: this.route });
   }
 
   showOrders(orderType) {
