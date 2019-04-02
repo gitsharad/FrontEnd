@@ -38,7 +38,12 @@
         <div class="col">
             <div class="col">
                 <mat-card  *ngIf="userType !== 'writer'">
-                  <p>Sample Coated</p> 
+                  <p *ngIf="project.orderSamples.length !== 0;  else nocoted">Sample Coated</p> 
+
+                  <ng-template #nocoted>
+                      <p *ngIf="project.orderSamples">No Sample Coted </p>
+                  </ng-template>
+                 
                   <mat-expansion-panel *ngFor="let writersSample of project.orderSamples">
                       <mat-expansion-panel-header>
                         <mat-panel-title>
@@ -62,7 +67,8 @@
                       </mat-panel-title>
                   </mat-expansion-panel>
 
-                   <small *ngIf="!project.orderSamples">No Sample Coted </small>
+                          
+                   
                 </mat-card>
                 <mat-card  *ngIf="userType === 'writer'">
                   <h6>Coated Samples</h6>
