@@ -3,6 +3,7 @@ import { OrdersService } from '../orders.service';
 import { Order } from '../order';
 import * as _ from 'lodash';
 import { ActivatedRoute } from "@angular/router";
+import { SampleService } from '../myservices/sample.service';
 
 @Component({
   selector: 'app-dashboard-orders',
@@ -14,32 +15,13 @@ export class DashboardOrdersComponent implements OnInit {
 
   data: Order[] = [];
   public userType
-  
-  //data: Array<any> = []
   isLoadingResults = true;
   public orderStatus
-  public SampleCoated = 
-    {
-      "writer":"SSSPAWAR25@GMAIL.COM",
-      "orderId":"66@Wjb8bOg",
-      "accept":false,
-      "samples":[{
-        "category":"whitePaper",
-        "subCategory":"title",
-        "content":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu."
-      },
-      {
-        "category":"Article",
-        "subCategory":"title",
-        "content":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu."
-      }],
-      "date":"25 March 2019"
-    }
   public menuList = {
     
   }
 
-  constructor(private api: OrdersService, private route: ActivatedRoute) { }
+  constructor(private api: OrdersService, private route: ActivatedRoute, private sampleApi: SampleService) { }
 
   ngOnInit() {
     this.userType = localStorage.getItem('userType')
@@ -61,14 +43,16 @@ export class DashboardOrdersComponent implements OnInit {
     })  
   }
 
- acceptSample(id){
-   /* for (let sample of this.SampleCoated) {
-      if(sample['writer'] === id){
-        sample['accept'] = true
-      } else{
-        sample['accept'] = false
-      }
-  }   */
+ acceptSample(orderId,email){
+  let parameters = {}
+  parameters['email'] = email
+  parameters['orderId'] = orderId
+  this.sampleApi.acceptSample(parameters)
+      .subscribe(res => {
+        // this.data = res;
+      }, err => {
+        console.log(err);
+      });
 }
 
 // Add Sample

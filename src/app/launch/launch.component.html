@@ -45,14 +45,14 @@
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">First name</label>
-            <input type="text" class="form-control" id="firstName" #firstName="ngModel" name="firstName" ngModel="{{profileData.firstName}}" disabled="{{profileData.firstName}}"  placeholder="First Name" value="" required>
+            <input type="text" class="form-control" id="firstName" #firstName="ngModel" name="firstName" ngModel="{{profileData.firstName}}" disabled="{{profileData.firstName !== undefined}}"  placeholder="First Name" value="" required>
             <div *ngIf="firstName.touched && !firstName.valid" class="invalid-feedback-new">
               Valid first name is required.
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="lastName">Last name</label>
-            <input type="text" class="form-control" id="lastName" #lastName="ngModel" name="lastName" ngModel="{{profileData.lastName}}" disabled="{{profileData.lastName}}" placeholder="Last Name" value="" required>
+            <input type="text" class="form-control" id="lastName" #lastName="ngModel" name="lastName" ngModel="{{profileData.lastName}}" disabled="{{profileData.lastName !== undefined}}" placeholder="Last Name" value="" required>
             <div *ngIf="lastName.touched && !lastName.valid" class="invalid-feedback-new">
               Valid last name is required.
             </div>

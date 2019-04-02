@@ -18,8 +18,6 @@
                 <p>
                   <span matBadge="{{product.qty}}" matBadgeOverlap="false">{{product.productName}}</span>
                 </p>
-                
-               
                     <mat-card  *ngFor="let otherInfo of product.otherInfo">
                         {{otherInfo.name}} 
                         
@@ -30,7 +28,7 @@
                             </li>
                           </ul>
 
-                        </mat-card>
+                    </mat-card>
                
           </mat-card>
           </div>
@@ -60,14 +58,14 @@
                           </mat-panel-description>
                       </div>
                       <mat-panel-title>
-                          <button *ngIf="!writersSample.accept" mat-button (click)="acceptSample(writersSample.writer)" color="primary">Accept</button>
+                          <button *ngIf="!writersSample.accept" (click)="acceptSample(writersSample.orderId,writersSample.writer)"   mat-button  color="primary">Accept</button>
                       </mat-panel-title>
                   </mat-expansion-panel>
 
-                   <small *ngIf="!SampleCoated">No Sample Coted </small>
+                   <small *ngIf="!project.orderSamples">No Sample Coted </small>
                 </mat-card>
                 <mat-card  *ngIf="userType === 'writer'">
-                  <h6>Coted Samples</h6>
+                  <h6>Coated Samples</h6>
                   
                 <div *ngIf="project.orderSamples; else addsample" >
                     

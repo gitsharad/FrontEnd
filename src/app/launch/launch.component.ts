@@ -90,6 +90,7 @@ getProfileData(email){
     this.authService.getProfile(email).subscribe(
       res => { 
        this.profileData = res
+       console.log('error',res)
      },
       err => {
         console.log('err',err)

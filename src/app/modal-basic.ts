@@ -32,6 +32,9 @@ select{
   width:100%;
   margin-left:0;
 }
+.form-control:disabled, .form-control[readonly] {
+  background-color: transparent !important;
+}
 `]
 })
 export class NgbdModalBasic {
