@@ -11,7 +11,7 @@ export class ConfigService {
    
  constructor() { }
  public configuration = {
-   host:"http://localhost:3000/api/",
+   host:"http://ec2-52-15-233-183.us-east-2.compute.amazonaws.com:3000/api/",
    currency:'$',
    currencyCode:'USD',
    defaultProductValues:{
